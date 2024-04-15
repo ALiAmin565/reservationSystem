@@ -27,5 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+// registerCopy
 
+Route::get('/registerCopy', function () {
+    return view('auth.registerCopy');
+});
 require __DIR__.'/auth.php';

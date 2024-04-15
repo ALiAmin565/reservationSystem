@@ -1,0 +1,44 @@
+﻿.mandatoryClass {
+    color: red;
+    display: inline;
+    font-size: larger;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
+.custom-radios3 input[type="radio"] {
+    display: none
+}
+
+.cr2-label {
+    background: #bbbbbb;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 17px;
+}
+
+    .cr2-label i {
+        color: #9e9e9e;
+    }
+
+    .cr2-label.not-active {
+        background: #cccccc;
+        color: #fff;
+    }
+
+        .cr2-label.not-active i {
+            color: #c8c8c8
+        }
+
+    .cr2-label.active {
+        color: #fff;
+        background: #960d13;
+    }
+
+        .cr2-label.active i {
+            color: #fff
+        }
