@@ -1,4 +1,4 @@
-@extends('dashboard.nav')
+{{-- @extends('dashboard.nav') --}}
 @section('content')
 <main id="main" class="main">
 
