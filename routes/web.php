@@ -28,6 +28,10 @@ Route::get("/dashboard-admin", function () {
     return view('dashboard.index');
 });
 
+Route::get("/reservation-admin", function () {
+    return view('dashboard.res-form-admin');
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
