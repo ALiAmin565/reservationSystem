@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// ReservationPage
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.reservation');
 });
+// PackagesPage
+Route::get("/packages", function () {
+    return view('front.package');
+});
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,4 +43,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/registerCopy', function () {
     return view('auth.registerCopy');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
