@@ -141,7 +141,15 @@
                                 <x-input-error :messages="$errors->get('first_visit')" class="mt-2" />
                             </div>
 
-
+                            <div class="mt-4">
+                                <x-input-label for="payment_way" style="display: block" :value="__('اختر طريقة الدفع ')" />
+                                <select id="payment_way" class="mt-1 w-full form-control col-sm-9 custom-select" name="payment_way" required>
+                                    {{-- <option value=""> اختر طريقة الدفع</option> --}}
+                                    <option value="cash"> الدفع عند استلام الخدمة(كاش)</option>
+                                    <option value="bank"> عن طريق تحويل بنكي</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('payment_way')" class="mt-2" />
+                            </div>
 
                             <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
