@@ -161,12 +161,20 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link collapsed" href="{{ route('reservations-admin.index') }}">
-                  <i class="bi bi-grid">
-                      <span>Packages</span>
-                  </i>
-              </a>
-          </li>
+                <a class="nav-link collapsed" href="{{ route('reservations-admin.index') }}">
+                    <i class="bi bi-grid">
+                        <span>Packages</span>
+                    </i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('accounts.create') }}">
+                    <i class="bi bi-grid">
+                        <span>Accounts</span>
+                    </i>
+                </a>
+            </li>
             <!-- End Forms Nav -->
 
         </ul>

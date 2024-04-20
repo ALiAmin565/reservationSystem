@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\ServiceManReservationController;
 
 /*
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/reservations/{reservation}/toggle_active', [DashboardController::class, 'toggleActive'])->name('reservations.toggle_active');
 
     Route::resource('reservations-admin', ServiceManReservationController::class);
+    Route::resource('accounts', BankAccountController::class);
 });
 
 Route::get("/reservation-admin", function () {
