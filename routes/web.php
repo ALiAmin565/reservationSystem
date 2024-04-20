@@ -27,6 +27,9 @@ Route::get("/record", function () {
 Route::get("/degisen-plan", function () {
     return view('front.degisen-plan');
 });
+Route::get("/bank-information", function () {
+    return view('front.bank-information');
+});
 
 // Dashboard Page
 
