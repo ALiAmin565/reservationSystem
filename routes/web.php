@@ -30,6 +30,9 @@ Route::get("/degisen-plan", function () {
 Route::get("/bank-information", function () {
     return view('front.bank-information');
 });
+Route::get("/my-profile", function () {
+    return view('front.profile');
+});
 
 // Dashboard Page
 
