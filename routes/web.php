@@ -49,6 +49,9 @@ Route::get("/bank-information", function () {
     $data = BankAccount::where('id', 1)->first();
     return view('front.bank-information', compact('data'));
 });
+Route::get("/my-profile", function () {
+    return view('front.profile');
+});
 
 
 Route::get('/dashboard', function () {
