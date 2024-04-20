@@ -15,4 +15,10 @@ class ServiceReservationController extends Controller
         })->get();
         return view('front.package', compact('services', 'period'));
     }
+
+    public function show(Request $request)
+    {
+        $service = ServiceManReservation::find($request->service_id);
+        return view('front.user-reservation', compact('service'));
+    }
 }

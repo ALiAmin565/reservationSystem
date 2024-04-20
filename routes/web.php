@@ -24,7 +24,6 @@ Route::get('/', function () {
     return view('front.reservation');
 });
 // PackagesPage
-
 Route::get('/services', [ServiceReservationController::class, 'index'])->name('services.index');
 
 
@@ -45,13 +44,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('reservations-admin', ServiceManReservationController::class);
     Route::resource('accounts', BankAccountController::class);
 });
-Route::get("/bank-information", function () {
-    $data = BankAccount::where('id', 1)->first();
-    return view('front.bank-information', compact('data'));
-});
-Route::get("/my-profile", function () {
-    return view('front.profile');
-});
+
+
 
 
 Route::get('/dashboard', function () {
@@ -64,8 +58,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get("/design-plan", function () {
         $times = DeterminedTime::all();
-        $user = auth()->user(); 
+        $user = auth()->user();
         return view('front.design-plan', compact('times', 'user'));
     })->name('design-plan');
+    Route::get("/my-profile", function () {
+        $user = auth()->user();
+        return view('front.profile', compact('user'));
+    })->name('profile');
+
+    Route::post('/services-user', [ServiceReservationController::class, 'show'])->name('services-user.show');
+
+    Route::get("/bank-information", function () {
+        $data = BankAccount::where('id', 1)->first();
+        return view('front.bank-information', compact('data'));
+    })->name('bank-information');
+    
 });
 require __DIR__ . '/auth.php';

@@ -47,7 +47,6 @@
         </div>
     </div>
 
-    0
     <div class="container">
         <div class="row py-lg-4 py-3">
             <div class="col-lg-12 col-md-12 pb-4">
@@ -194,10 +193,11 @@
 
 
                                                                         <div>
-                                                                            <a href="../../Account/Login5f49.html"
-                                                                                class="btn btn-block btn-danger btn-sm">
-                                                                                احجز
-                                                                                الآن</a>
+                                                                            <form action="{{ route('services-user.show') }}" method="POST" style="display: inline;">
+                                                                                @csrf
+                                                                                <input type="hidden" name="service_id" value="{{ $service->id }}">
+                                                                                <button type="submit" class="btn btn-danger btn-sm btn-block">احجز الآن</button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>

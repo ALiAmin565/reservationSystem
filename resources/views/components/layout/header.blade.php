@@ -25,6 +25,11 @@
                             اتصل بنا
                         </a>
                     </li>
+                    @if (Auth::user())
+                    <li class='nav-item '>
+                        <a class="nav-link" href="{{ route('profile') }}">لوحة التحكم</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
             <div class="mx-3 top-social d-none d-lg-flex ">
@@ -32,13 +37,27 @@
                 <a href="#" target="_blank"></a>
                 <a href="#" class="top-instagram" target="_blank"></a>
             </div>
-            <div class="align-items-center d-lg-flex flex-column mx-3 top-apps d-none">
-                <div class="d-flex justify-content-center">
-                    <a href="#" class="top-android" target="_blank"></a>
-                    <a href="#" class="top-apple" target="_blank"></a>
-                </div>
+            @if (Auth::user())
+                <!-- Settings Dropdown -->
 
-            </div>
+
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
+            @else
+                <x-dropdown-link :href="route('login')">
+                    {{ __('Log In') }}
+                </x-dropdown-link>
+            @endif
+
+
         </nav>
         <div class="align-items-center d-flex d-lg-none justify-content-between py-3">
 
@@ -49,11 +68,7 @@
                     target="_blank"></a>
             </div>
             <div class="align-items-center  flex-column  top-apps ">
-                <div class="d-flex justify-content-center">
-                    <a href="http://tinyurl.com/wt8x4ve" class="top-android" target="_blank"></a>
-                    <a href="http://tinyurl.com/svtqmsa" class="top-apple" target="_blank"></a>
-                </div>
-                <div>حمل التطبيق</div>
+
             </div>
         </div>
     </div>

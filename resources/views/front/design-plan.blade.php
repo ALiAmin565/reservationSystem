@@ -193,14 +193,15 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_way')" class="mt-2" />
                             </div>
-                            <div class="mt-4">
-                                <div class="col-sm-9 offset-sm-3">
-                                    <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
-                                        {{ __('التالي ') }}
-                                    </x-primary-button>
-                                </div>
-                            </div>
+                          
                         </form>
+                        <div class="mt-4">
+                            <div class="col-sm-9 offset-sm-3">
+                                <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
+                                    <a href="{{ route('bank-information') }}">{{ __('التالي ') }}</a>
+                                </x-primary-button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
