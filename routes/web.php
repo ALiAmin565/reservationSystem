@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::get("/packages", function () {
     return view('front.package');
 });
+Route::get("/record", function () {
+    return view('front.record');
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
@@ -37,7 +40,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::get("/reservation-admin", function () {
-    return view('dashboard.res-form-admin');
+    return view('dashboard.forms-elements');
 });
 
 Route::get('/dashboard', function () {
