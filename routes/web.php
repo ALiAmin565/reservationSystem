@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get("/packages", function () {
     return view('front.package');
 });
+Route::get("/record", function () {
+    return view('front.record');
+});
 
 // Dashboard Page
 
