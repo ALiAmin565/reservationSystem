@@ -44,9 +44,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('accounts', BankAccountController::class);
 });
 
-Route::get("/reservation-admin", function () {
-    return view('dashboard.forms-elements');
-});
 
 Route::get('/dashboard', function () {
     return view('front.reservation');
@@ -56,10 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-// registerCopy
-
-Route::get('/registerCopy', function () {
-    return view('auth.registerCopy');
 });
 require __DIR__ . '/auth.php';

@@ -107,17 +107,20 @@
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
 
+                            <!-- Add City Field -->
                             <div class="mt-4">
-                                <x-input-label for="city" :value="__('المدينةوالحي')" />
+                                <x-input-label for="city" :value="__('المدينة')" />
                                 <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
                                     type="text" name="city" :value="old('city')" required />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
+
+                            <!-- Add Street Name Field -->
                             <div class="mt-4">
-                                <x-input-label for="street" :value="__('اسم الشارع')" />
-                                <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="street" :value="old('street')" required />
-                                <x-input-error :messages="$errors->get('street')" class="mt-2" />
+                                <x-input-label for="street_name" :value="__('اسم الشارع')" />
+                                <x-text-input id="street_name" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="street_name" :value="old('street_name')" required />
+                                <x-input-error :messages="$errors->get('street_name')" class="mt-2" />
                             </div>
                             <div class="mt-4">
                                 <x-input-label for="address" :value="__(' العنوان بالكامل ')" />
