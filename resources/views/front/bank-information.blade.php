@@ -51,7 +51,8 @@
         <div class="row py-lg-4 py-3">
 
             <div class="col-lg-10 offset-lg-1">
-                 <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a href="https://wa.me/+201101015643" target="_blank">ارسل هنا</a></p>
+                <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a
+                        href="https://wa.me/+201101015643" target="_blank">ارسل هنا</a></p>
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white "> معلومات البنك</div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -64,26 +65,18 @@
                         </span>
                         <table class="table">
                             <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">اسم البنك</th>
-                                <th scope="col">بيانات الحساب</th>
-                              </tr>
+                                <tr>
+                                    <th scope="col">اسم البنك</th>
+                                    <th scope="col">بيانات الحساب</th>
+                                </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                              </tr>
-
+                                <tr>
+                                    <td>{{ $data->bank_name }}</td>
+                                    <td>{{ $data->account_number }}</td>
+                                </tr>
                             </tbody>
-                          </table>
+                        </table>
                     </div>
 
                 </div>

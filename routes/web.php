@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
+use App\Models\BankAccount;
 use App\Models\DeterminedTime;
 
 /*
@@ -45,7 +46,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('accounts', BankAccountController::class);
 });
 Route::get("/bank-information", function () {
-    return view('front.bank-information');
+    $data = BankAccount::where('id', 1)->first();
+    return view('front.bank-information', compact('data'));
 });
 
 
