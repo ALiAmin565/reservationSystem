@@ -44,6 +44,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('reservations-admin', ServiceManReservationController::class);
     Route::resource('accounts', BankAccountController::class);
 });
+Route::get("/bank-information", function () {
+    return view('front.bank-information');
+});
 
 
 Route::get('/dashboard', function () {
