@@ -65,19 +65,41 @@
                         <form method="POST" action="{{ route('register') }}" class="regForm" id="registerForm"
                             role="form">
                             @csrf
-                            <div class="form-group row">
-                                <div>
-                                    <x-input-label for="name" :value="__('الاسم الاول')" />
-                                    <x-text-input id="name" class="block mt-1 w-full form-control" type="text"
-                                        name="name" :value="old('name')" required autofocus autocomplete="name" />
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                </div>
-                                <div class="mx-5">
-                                    <x-input-label for="last_name" :value="__('الاسم الاخير ')" />
-                                    <x-text-input id="last_name" class="block mt-1 w-full form-control" type="text"
-                                        name="last_name" :value="old('last_name')" required />
-                                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
-                                </div>
+                            <div class="mt-4">
+                                <x-input-label for="city" :value="__('المدينةوالحي')" />
+                                <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="city" :value="old('city')" required />
+                                <x-input-error :messages="$errors->get('city')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="street" :value="__('اسم الشارع')" />
+                                <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="street" :value="old('street')" required />
+                                <x-input-error :messages="$errors->get('street')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="number_home" :value="__('رقم العمارة')" />
+                                <x-text-input id="number_home" class="block mt-1 w-full form-control col-sm-9"
+                                    type="number" name="number_home" :value="old('number_home')" required />
+                                <x-input-error :messages="$errors->get('number_home')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="number_row" :value="__('رقم الطابق')" />
+                                <x-text-input id="number_row" class="block mt-1 w-full form-control col-sm-9"
+                                    type="number" name="number_row" :value="old('number_row')" required />
+                                <x-input-error :messages="$errors->get('number_row')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="number_room" :value="__('رقم الشقة')" />
+                                <x-text-input id="number_room" class="block mt-1 w-full form-control col-sm-9"
+                                    type="number" name="number_room" :value="old('number_room')" required />
+                                <x-input-error :messages="$errors->get('number_room')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="address" :value="__(' العنوان بالكامل ')" />
+                                <x-text-input id="address" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="address" :value="old('address')" required />
+                                <x-input-error :messages="$errors->get('address')" class="mt-2" />
                             </div>
                             <div class="mt-4">
                                 <div>
@@ -106,21 +128,8 @@
                                     name="password_confirmation" required autocomplete="new-password" />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
-
                             <div class="mt-4">
-                                <x-input-label for="city" :value="__('المدينةوالحي')" />
-                                <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="city" :value="old('city')" required />
-                                <x-input-error :messages="$errors->get('city')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="street" :value="__('اسم الشارع')" />
-                                <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="street" :value="old('street')" required />
-                                <x-input-error :messages="$errors->get('street')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="address" :value="__(' العنوان بالكامل ')" />
+                                <x-input-label for="address" :value="__('العنوان')" />
                                 <x-text-input id="address" class="block mt-1 w-full form-control col-sm-9"
                                     type="text" name="address" :value="old('address')" required />
                                 <x-input-error :messages="$errors->get('address')" class="mt-2" />

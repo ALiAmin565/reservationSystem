@@ -29,7 +29,7 @@ Route::get("/dashboard-admin", function () {
 });
 
 Route::get("/reservation-admin", function () {
-    return view('dashboard.res-form-admin');
+    return view('dashboard.forms-elements');
 });
 
 // Route::get('/dashboard', function () {
