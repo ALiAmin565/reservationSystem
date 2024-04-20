@@ -27,6 +27,9 @@ Route::get("/packages", function () {
 Route::get("/record", function () {
     return view('front.record');
 });
+Route::get("/degisen-plan", function () {
+    return view('front.degisen-plan');
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
