@@ -24,6 +24,9 @@ Route::get("/packages", function () {
 Route::get("/record", function () {
     return view('front.record');
 });
+Route::get("/degisen-plan", function () {
+    return view('front.degisen-plan');
+});
 
 // Dashboard Page
 
