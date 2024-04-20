@@ -51,7 +51,7 @@
         <div class="row py-lg-4 py-3">
 
             <div class="col-lg-10 offset-lg-1">
-                 <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a href="https://wa.me/+201101015643" target="_blank">اضغط هنا</a></p>
+                 <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a href="https://wa.me/+201101015643" target="_blank">ارسل هنا</a></p>
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white "> معلومات البنك</div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
