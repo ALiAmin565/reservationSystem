@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <span class="d-block position-relative has-dot-right-top"><a href="{{ url('packages') }}"
+                <span class="d-block position-relative has-dot-right-top"><a href="{{ url('services') }}"
                         class="btn btn-block btn-danger btn-lg fs-24 rounded-32 mb-lg-0 mb-5">احجز الآن</a></span>
             </div>
         </div>

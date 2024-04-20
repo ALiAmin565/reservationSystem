@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
+use App\Models\DeterminedTime;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +23,14 @@ Route::get('/', function () {
     return view('front.reservation');
 });
 // PackagesPage
-Route::get("/packages", function () {
-    return view('front.package');
-});
+
+Route::get('/services', [ServiceReservationController::class, 'index'])->name('services.index');
+
+
 Route::get("/record", function () {
     return view('front.record');
 });
-Route::get("/degisen-plan", function () {
-    return view('front.degisen-plan');
-});
+
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
@@ -53,5 +54,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get("/design-plan", function () {
+        $times = DeterminedTime::all();
+        $user = auth()->user(); 
+        return view('front.design-plan', compact('times', 'user'));
+    })->name('design-plan');
 });
 require __DIR__ . '/auth.php';

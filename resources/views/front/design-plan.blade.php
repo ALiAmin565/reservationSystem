@@ -38,19 +38,14 @@
             </div>
         </div>
     </div>
-
-
     <div class="inner-header">
         <div class="pb-5 text-center">
             <h1 class="font-bold fs-28 text-white"><span class="d-inline-block pb-2 px-5"> صمم باقتك </span>
             </h1>
         </div>
     </div>
-
-
     <div class="container position-relative mb-4">
         <div class="row py-lg-4 py-3">
-
             <div class="col-lg-10 offset-lg-1">
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white ">صمم باقتك</div>
                 <div class="row">
@@ -68,13 +63,13 @@
                             <div class="mt-4">
                                 <x-input-label for="city" :value="__('المدينةوالحي')" />
                                 <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="city" :value="old('city')" required />
+                                    type="text" name="city" :value="old('city', $user->city ?? '')" required />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
                             <div class="mt-4">
                                 <x-input-label for="street" :value="__('اسم الشارع')" />
                                 <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="street" :value="old('street')" required />
+                                    type="text" name="street" :value="old('street', $user->street_name ?? '')" required />
                                 <x-input-error :messages="$errors->get('street')" class="mt-2" />
                             </div>
                             <div class="mt-4">
@@ -111,7 +106,8 @@
                             </div>
                             <div class="mt-4">
                                 <x-input-label for="num_service" style="display: block" :value="__('عدد مقدمي الخدمة')" />
-                                <select id="num_service" class="mt-1 w-full form-control col-sm-9 custom-select" name="num_service" required>
+                                <select id="num_service" class="mt-1 w-full form-control col-sm-9 custom-select"
+                                    name="num_service" required>
                                     <option value="1">عامل واحد</option>
                                     <option value="2">عاملين</option>
                                     <option value="3">3 عمال</option>
@@ -125,11 +121,10 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('num_service')" class="mt-2" />
                             </div>
-
-
                             <div class="mt-4">
                                 <x-input-label for="timeservice" style="display: block" :value="__('عدد الزيارات الاسبوعية ')" />
-                                <select id="timeservice" class="mt-1 w-full form-control col-sm-9 custom-select" name="timeservice" required>
+                                <select id="timeservice" class="mt-1 w-full form-control col-sm-9 custom-select"
+                                    name="timeservice" required>
                                     <option value="1"> 1 زيارة اسبوعيا</option>
                                     <option value="2">2 زيارة اسبوعيا</option>
                                     <option value="3">3 زيارة اسبوعيا</option>
@@ -142,64 +137,62 @@
                             </div>
                             <div class="mt-4">
                                 <x-input-label for="num_hour" style="display: block" :value="__('عدد  الساعات ')" />
-                                <select id="num_hour" class="mt-1 w-full form-control col-sm-9 custom-select" name="num_hour" required>
+                                <select id="num_hour" class="mt-1 w-full form-control col-sm-9 custom-select"
+                                    name="num_hour" required>
                                     <option value=""> اختر عدد الساعات</option>
-                                    <option value="متنسانيش"> حط هنا بقي اللي انت عايزه</option>
-
-
+                                    @foreach ($times as $time)
+                                        <option value="{{ $time->id }}">{{ $time->time }}</option>
+                                    @endforeach
                                 </select>
                                 <x-input-error :messages="$errors->get('timeservice')" class="mt-2" />
                             </div>
-
                             <div class="mt-4">
                                 <x-input-label for="time_value" style="display: block" :value="__('مده التعاقد')" />
-                                <select id="time_value" class="mt-1 w-full form-control col-sm-9 custom-select" name="time_value" required>
+                                <select id="time_value" class="mt-1 w-full form-control col-sm-9 custom-select"
+                                    name="time_value" required>
                                     <option value="اسبوع">اسبوع </option>
                                     <option value="اسبوعين">اسبوعين </option>
                                     <option value="3 اسابيع">3 اسابيع</option>
-                                    <option value="4 اربع اسابيع">4  اسابيع</option>
-                                    <option value="5 خمس اسابيع ">5  اسابيع </option>
-                                    <option value="6 ست اسابيع ">6  اسابيع </option>
-                                    <option value="7 سبع اسابيع ">7  اسابيع </option>
-                                    <option value="8 ثمن اسابيع ">8  اسابيع </option>
-                                    <option value="9 تسع اسابيع ">9  اسابيع </option>
-                                    <option value="10 عشره اسابيع ">10  اسابيع </option>
-                                    <option value="11  اسبوع ">11  اسبوع </option>
-                                    <option value="3 شهور ">3 شهور   </option>
-                                    <option value="4 شهور ">4 شهور   </option>
-                                    <option value="5 شهور ">5 شهور   </option>
-                                    <option value="6 شهور ">6 شهور   </option>
-                                    <option value="7 شهور ">7 شهور   </option>
-                                    <option value="8 شهور ">8 شهور   </option>
-                                    <option value="9 شهور ">9 شهور   </option>
-                                    <option value="10 شهور ">10 شهور   </option>
-                                    <option value="11 شهر ">11 شهر   </option>
-                                    <option value="12 شهر ">12 شهر   </option>
+                                    <option value="4 اربع اسابيع">4 اسابيع</option>
+                                    <option value="5 خمس اسابيع ">5 اسابيع </option>
+                                    <option value="6 ست اسابيع ">6 اسابيع </option>
+                                    <option value="7 سبع اسابيع ">7 اسابيع </option>
+                                    <option value="8 ثمن اسابيع ">8 اسابيع </option>
+                                    <option value="9 تسع اسابيع ">9 اسابيع </option>
+                                    <option value="10 عشره اسابيع ">10 اسابيع </option>
+                                    <option value="11  اسبوع ">11 اسبوع </option>
+                                    <option value="3 شهور ">3 شهور </option>
+                                    <option value="4 شهور ">4 شهور </option>
+                                    <option value="5 شهور ">5 شهور </option>
+                                    <option value="6 شهور ">6 شهور </option>
+                                    <option value="7 شهور ">7 شهور </option>
+                                    <option value="8 شهور ">8 شهور </option>
+                                    <option value="9 شهور ">9 شهور </option>
+                                    <option value="10 شهور ">10 شهور </option>
+                                    <option value="11 شهر ">11 شهر </option>
+                                    <option value="12 شهر ">12 شهر </option>
 
 
 
                                 </select>
                                 <x-input-error :messages="$errors->get('time_value')" class="mt-2" />
                             </div>
-
-
                             <div class="mt-4">
                                 <x-input-label for="first_visit" :value="__(' تاريخ أول زيارة ')" />
                                 <x-text-input id="first_visit" class="block mt-1 w-full form-control col-sm-9"
                                     type="date" name="first_visit" :value="old('first_visit')" required />
                                 <x-input-error :messages="$errors->get('first_visit')" class="mt-2" />
                             </div>
-
                             <div class="mt-4">
                                 <x-input-label for="payment_way" style="display: block" :value="__('اختر طريقة الدفع ')" />
-                                <select id="payment_way" class="mt-1 w-full form-control col-sm-9 custom-select" name="payment_way" required>
+                                <select id="payment_way" class="mt-1 w-full form-control col-sm-9 custom-select"
+                                    name="payment_way" required>
                                     {{-- <option value=""> اختر طريقة الدفع</option> --}}
                                     <option value="cash"> الدفع عند استلام الخدمة(كاش)</option>
                                     <option value="bank"> عن طريق تحويل بنكي</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_way')" class="mt-2" />
                             </div>
-
                             <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
                                     <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
@@ -207,11 +200,6 @@
                                     </x-primary-button>
                                 </div>
                             </div>
-                            {{-- <div class="mt-4">
-                                <div class="col-sm-9 offset-sm-3">
-                                    <a href="{{ route('login') }}">لديك حساب بالفعل ؟</a>
-                                </div>
-                            </div> --}}
                         </form>
                     </div>
 
@@ -222,13 +210,14 @@
     </div>
     <style>
         .custom-select {
-    appearance: none; /* إزالة الشكل الافتراضي للسهم */
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') no-repeat right 0.75rem center/20px 20px;
-    border: 1px solid #ccc;
-    padding-right: 2.5rem; /* توفير مساحة للسهم */
-    cursor: pointer;
-}
-
+            appearance: none;
+            /* إزالة الشكل الافتراضي للسهم */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>') no-repeat right 0.75rem center/20px 20px;
+            border: 1px solid #ccc;
+            padding-right: 2.5rem;
+            /* توفير مساحة للسهم */
+            cursor: pointer;
+        }
     </style>
     <script>
         $(document).on("click", "#Registerbtn", function() {
@@ -245,5 +234,4 @@
             }
         });
     </script> <!-- inner header -->
-
 </x-layout.master>
