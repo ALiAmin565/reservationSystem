@@ -8,7 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceManReservation extends Model
 {
     use HasFactory;
-    
+
+    protected $fillable = [
+        'service_name',
+        'price',
+        'discount',
+        'number_of_visits',
+        'number_of_man_services',
+        'period_id',
+        'time_id',
+        'active'
+    ];
+
     public function period()
     {
         return $this->belongsTo(Period::class, 'period_id');
