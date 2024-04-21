@@ -41,6 +41,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/reservations/{status}', [DashboardController::class, 'fetchReservations'])->name('reservations.fetch');
     Route::get('/reservations/{reservation}/toggle_active', [DashboardController::class, 'toggleActive'])->name('reservations.toggle_active');
+    // reservations-design.fetch
+    Route::get('/reservations-design', [DashboardController::class, 'fetchReservationsDesign'])->name('reservations-design.fetch');
+    Route::get('/reservations-design/{reservation}/toggle_active', [DashboardController::class, 'toggleActiveDesign'])->name('reservations-design.toggle_active');
 
     Route::resource('reservations-admin', ServiceManReservationController::class);
     Route::resource('accounts', BankAccountController::class);
@@ -50,8 +53,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 Route::get('/dashboard', function () {
-    return view('front.reservation');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    // return view('front.reservation');
+    return redirect()->route('dashboard-admin');
+})->middleware(['auth', 'admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

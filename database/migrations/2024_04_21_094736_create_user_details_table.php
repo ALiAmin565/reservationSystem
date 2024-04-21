@@ -21,11 +21,11 @@ return new class extends Migration
             $table->string('house_number');
             $table->text('full_address');
             $table->string('phone_number');
-            $table->string('service');
-            $table->integer('number_of_visits')->default(0);
-            $table->datetime('time_visit')->nullable();
-            $table->datetime('time_contract')->nullable();
-            $table->datetime('time_first_visit')->nullable();
+            $table->integer('service_count')->default(0);
+            $table->integer('weekly_visits')->default(0);
+            $table->integer('hours_count')->default(0);
+            $table->integer('contract_duration')->default(0);
+            $table->datetime('first_visit')->nullable();
             $table->string('payment_method');
             $table->timestamps();
         });

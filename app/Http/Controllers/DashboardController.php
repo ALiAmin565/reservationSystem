@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserService;
 use Illuminate\Http\Request;
 use App\Models\ServiceManReservation;
+use App\Models\UserDetail;
 
 class DashboardController extends Controller
 {
@@ -63,11 +64,26 @@ class DashboardController extends Controller
         return view('dashboard.reservation.index', compact('userServices')); // Pass the data to the view
     }
 
+    // fetchReservationsDesign
+    public function fetchReservationsDesign()
+    {
+        $userServices = UserDetail::with('user')->get();
+        return view('dashboard.reservation.index-design', compact('userServices')); // Pass the data to the view
+    }
+
     public function toggleActive(ServiceManReservation $reservation)
     {
         $reservation->active = !$reservation->active; // Toggle the active state
         $reservation->save();
 
+        return back()->with('success', 'Reservation status updated successfully!');
+    }
+
+    // toggleActiveDesign
+    public function toggleActiveDesign(UserDetail $reservation)
+    {
+        $reservation->active = !$reservation->active; // Toggle the active state
+        $reservation->save();
         return back()->with('success', 'Reservation status updated successfully!');
     }
 }

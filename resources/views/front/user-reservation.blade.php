@@ -63,50 +63,63 @@
                         </span>
                         <form method="POST" action="#" class="regForm" id="registerForm" role="form">
                             @csrf
+                            {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" /> --}}
+                            <!-- حقل المدينة -->
                             <div class="mt-4">
-                                <x-input-label for="city" :value="__('المدينةوالحي')" />
+                                <x-input-label for="city" :value="__('المدينة والحي')" />
                                 <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="city" :value="old('city')" />
+                                    type="text" name="city" :value="old('city')" required autofocus />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
+
+                            <!-- حقل اسم الشارع -->
                             <div class="mt-4">
-                                <x-input-label for="street" :value="__('اسم الشارع')" />
-                                <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="street" :value="old('street')" />
-                                <x-input-error :messages="$errors->get('street')" class="mt-2" />
+                                <x-input-label for="street_name" :value="__('اسم الشارع')" />
+                                <x-text-input id="street_name" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="street_name" :value="old('street_name')" required />
+                                <x-input-error :messages="$errors->get('street_name')" class="mt-2" />
                             </div>
+
+                            <!-- حقل رقم العمارة -->
                             <div class="mt-4">
-                                <x-input-label for="number_home" :value="__('رقم العمارة')" />
-                                <x-text-input id="number_home" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_home" :value="old('number_home')" />
-                                <x-input-error :messages="$errors->get('number_home')" class="mt-2" />
+                                <x-input-label for="building_number" :value="__('رقم العمارة')" />
+                                <x-text-input id="building_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="building_number" :value="old('building_number')" required />
+                                <x-input-error :messages="$errors->get('building_number')" class="mt-2" />
                             </div>
+
+                            <!-- حقل رقم الطابق -->
                             <div class="mt-4">
-                                <x-input-label for="number_row" :value="__('رقم الطابق')" />
-                                <x-text-input id="number_row" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_row" :value="old('number_row')" />
-                                <x-input-error :messages="$errors->get('number_row')" class="mt-2" />
+                                <x-input-label for="floor_number" :value="__('رقم الطابق')" />
+                                <x-text-input id="floor_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="floor_number" :value="old('floor_number')" />
+                                <x-input-error :messages="$errors->get('floor_number')" class="mt-2" />
                             </div>
+
+                            <!-- حقل رقم الشقة -->
                             <div class="mt-4">
-                                <x-input-label for="number_room" :value="__('رقم الشقة')" />
-                                <x-text-input id="number_room" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_room" :value="old('number_room')" />
-                                <x-input-error :messages="$errors->get('number_room')" class="mt-2" />
+                                <x-input-label for="house_number" :value="__('رقم الشقة')" />
+                                <x-text-input id="house_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="house_number" :value="old('house_number')" required />
+                                <x-input-error :messages="$errors->get('house_number')" class="mt-2" />
                             </div>
+
+                            <!-- حقل العنوان الكامل -->
                             <div class="mt-4">
-                                <x-input-label for="address" :value="__(' العنوان بالكامل ')" />
-                                <x-text-input id="address" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="address" :value="old('address')" />
-                                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                                <x-input-label for="full_address" :value="__('العنوان بالكامل')" />
+                                <x-text-input id="full_address" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="full_address" :value="old('full_address')" required />
+                                <x-input-error :messages="$errors->get('full_address')" class="mt-2" />
                             </div>
+
+                            <!-- حقل رقم الهاتف -->
                             <div class="mt-4">
-                                <div>
-                                    <x-input-label for="phone" :value="__(' رقم الهاتف')" />
-                                    <x-text-input id="phone" class=" mt-1 w-full form-control col-sm-9"
-                                        type="text" name="phone" :value="old('phone')" />
-                                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-                                </div>
+                                <x-input-label for="phone_number" :value="__('رقم الهاتف')" />
+                                <x-text-input id="phone_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="phone_number" :value="old('phone_number')" required />
+                                <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                             </div>
+
                             <div class="mt-4">
                                 <x-input-label for="num_service" :value="__(' عدد مقدمي الخدمة ')" />
                                 <x-text-input id="num_service" class="block mt-1 w-full form-control col-sm-9"
@@ -132,38 +145,32 @@
                                 <x-input-error :messages="$errors->get('time_value')" class="mt-2" />
                             </div>
 
+                            <!-- حقل تاريخ الزيارة الأولى -->
                             <div class="mt-4">
-                                <x-input-label for="first_visit" :value="__(' تاريخ أول زيارة ')" />
+                                <x-input-label for="first_visit" :value="__('تاريخ الزيارة الأولى')" />
                                 <x-text-input id="first_visit" class="block mt-1 w-full form-control col-sm-9"
-                                    type="date" name="first_visit" :value="old('first_visit')" />
+                                    type="date" name="first_visit" :value="old('first_visit')" required />
                                 <x-input-error :messages="$errors->get('first_visit')" class="mt-2" />
                             </div>
 
+                            <!-- حقل طريقة الدفع -->
                             <div class="mt-4">
-                                <x-input-label for="payment_way" style="display: block" :value="__('اختر طريقة الدفع ')" />
-                                <select id="payment_way" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="payment_way">
-                                    {{-- <option value=""> اختر طريقة الدفع</option> --}}
-                                    <option value="cash"> الدفع عند استلام الخدمة(كاش)</option>
-                                    <option value="bank"> عن طريق تحويل بنكي</option>
+                                <x-input-label for="payment_method" :value="__('طريقة الدفع')" />
+                                <select id="payment_method" class="block mt-1 w-full form-control col-sm-9"
+                                    name="payment_method" required>
+                                    <option value="cash">الدفع نقداً عند الاستلام</option>
+                                    <option value="bank_transfer">تحويل بنكي</option>
                                 </select>
-                                <x-input-error :messages="$errors->get('payment_way')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
-
-                         
-                            {{-- <div class="mt-4">
+                            <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
-                                    <a href="{{ route('login') }}">لديك حساب بالفعل ؟</a>
+                                    <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
+                                        <a href="{{ route('bank-information') }}">{{ __('التالي ') }}</a>
+                                    </x-primary-button>
                                 </div>
-                            </div> --}}
-                        </form>
-                        <div class="mt-4">
-                            <div class="col-sm-9 offset-sm-3">
-                                <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
-                                    <a href="{{ route('bank-information') }}">{{ __('التالي ') }}</a>
-                                </x-primary-button>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>

@@ -57,151 +57,142 @@
                                 </ul>
                             </div>
                         </span>
-                        <form method="POST" action="{{ route('register') }}" class="regForm" id="registerForm"
-                            role="form">
+                        <form method="POST" action="{{ route('user_details.store') }}">
                             @csrf
+                            {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" /> --}}
+                            <!-- حقل المدينة -->
                             <div class="mt-4">
-                                <x-input-label for="city" :value="__('المدينةوالحي')" />
+                                <x-input-label for="city" :value="__('المدينة والحي')" />
                                 <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="city" :value="old('city', $user->city ?? '')" required />
+                                    type="text" name="city" :value="old('city')" required autofocus />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
                             </div>
-                            <div class="mt-4">
-                                <x-input-label for="street" :value="__('اسم الشارع')" />
-                                <x-text-input id="street" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="street" :value="old('street', $user->street_name ?? '')" required />
-                                <x-input-error :messages="$errors->get('street')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="number_home" :value="__('رقم العمارة')" />
-                                <x-text-input id="number_home" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_home" :value="old('number_home')" required />
-                                <x-input-error :messages="$errors->get('number_home')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="number_row" :value="__('رقم الطابق')" />
-                                <x-text-input id="number_row" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_row" :value="old('number_row')" required />
-                                <x-input-error :messages="$errors->get('number_row')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="number_room" :value="__('رقم الشقة')" />
-                                <x-text-input id="number_room" class="block mt-1 w-full form-control col-sm-9"
-                                    type="number" name="number_room" :value="old('number_room')" required />
-                                <x-input-error :messages="$errors->get('number_room')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="address" :value="__(' العنوان بالكامل ')" />
-                                <x-text-input id="address" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="address" :value="old('address')" required />
-                                <x-input-error :messages="$errors->get('address')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <div>
-                                    <x-input-label for="phone" :value="__(' رقم الهاتف')" />
-                                    <x-text-input id="phone" class=" mt-1 w-full form-control col-sm-9"
-                                        type="text" name="phone" :value="old('phone')" required />
-                                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="num_service" style="display: block" :value="__('عدد مقدمي الخدمة')" />
-                                <select id="num_service" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="num_service" required>
-                                    <option value="1">عامل واحد</option>
-                                    <option value="2">عاملين</option>
-                                    <option value="3">3 عمال</option>
-                                    <option value="4">4 عمال</option>
-                                    <option value="5">5 عمال</option>
-                                    <option value="6">6 عمال</option>
-                                    <option value="7">7 عمال</option>
-                                    <option value="8">8 عمال</option>
-                                    <option value="9">9 عمال</option>
-                                    <option value="10">10 عمال</option>
-                                </select>
-                                <x-input-error :messages="$errors->get('num_service')" class="mt-2" />
-                            </div>
-                            <div class="mt-4">
-                                <x-input-label for="timeservice" style="display: block" :value="__('عدد الزيارات الاسبوعية ')" />
-                                <select id="timeservice" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="timeservice" required>
-                                    <option value="1"> 1 زيارة اسبوعيا</option>
-                                    <option value="2">2 زيارة اسبوعيا</option>
-                                    <option value="3">3 زيارة اسبوعيا</option>
-                                    <option value="4">4 زيارة اسبوعيا</option>
-                                    <option value="5">5 زيارة اسبوعيا</option>
-                                    <option value="6">6 زيارة اسبوعيا</option>
 
-                                </select>
-                                <x-input-error :messages="$errors->get('timeservice')" class="mt-2" />
-                            </div>
+                            <!-- حقل اسم الشارع -->
                             <div class="mt-4">
-                                <x-input-label for="num_hour" style="display: block" :value="__('عدد  الساعات ')" />
-                                <select id="num_hour" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="num_hour" required>
-                                    <option value=""> اختر عدد الساعات</option>
+                                <x-input-label for="street_name" :value="__('اسم الشارع')" />
+                                <x-text-input id="street_name" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="street_name" :value="old('street_name')" required />
+                                <x-input-error :messages="$errors->get('street_name')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل رقم العمارة -->
+                            <div class="mt-4">
+                                <x-input-label for="building_number" :value="__('رقم العمارة')" />
+                                <x-text-input id="building_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="building_number" :value="old('building_number')" required />
+                                <x-input-error :messages="$errors->get('building_number')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل رقم الطابق -->
+                            <div class="mt-4">
+                                <x-input-label for="floor_number" :value="__('رقم الطابق')" />
+                                <x-text-input id="floor_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="floor_number" :value="old('floor_number')" />
+                                <x-input-error :messages="$errors->get('floor_number')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل رقم الشقة -->
+                            <div class="mt-4">
+                                <x-input-label for="house_number" :value="__('رقم الشقة')" />
+                                <x-text-input id="house_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="house_number" :value="old('house_number')" required />
+                                <x-input-error :messages="$errors->get('house_number')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل العنوان الكامل -->
+                            <div class="mt-4">
+                                <x-input-label for="full_address" :value="__('العنوان بالكامل')" />
+                                <x-text-input id="full_address" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="full_address" :value="old('full_address')" required />
+                                <x-input-error :messages="$errors->get('full_address')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل رقم الهاتف -->
+                            <div class="mt-4">
+                                <x-input-label for="phone_number" :value="__('رقم الهاتف')" />
+                                <x-text-input id="phone_number" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="phone_number" :value="old('phone_number')" required />
+                                <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل عدد مقدمي الخدمة -->
+                            <div class="mt-4">
+                                <x-input-label for="service_count" :value="__('عدد مقدمي الخدمة')" />
+                                <select id="service_count" class="block mt-1 w-full form-control col-sm-9"
+                                    name="service_count" required>
+                                    <option value="">اختر عدد المقدمين</option>
+                                    @for ($i = 1; $i <= 10; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                                <x-input-error :messages="$errors->get('service_count')" class="mt-2" />
+                            </div>
+
+                            <!-- حقل عدد الزيارات الأسبوعية -->
+                            <div class="mt-4">
+                                <x-input-label for="weekly_visits" :value="__('عدد الزيارات الأسبوعية')" />
+                                <select id="weekly_visits" class="block mt-1 w-full form-control col-sm-9"
+                                    name="weekly_visits" required>
+                                    <option value="">اختر عدد الزيارات</option>
+                                    @for ($i = 1; $i <= 6; $i++)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                                <x-input-error :messages="$errors->get('weekly_visits')" class="mt-2" />
+                            </div>
+                            <!-- حقل عدد الزيارات الأسبوعية -->
+                            <div class="mt-4">
+                                <x-input-label for="hours_count" :value="__('عدد الساعات')" />
+                                <select id="hours_count" class="block mt-1 w-full form-control col-sm-9"
+                                    name="hours_count" required>
+                                    <option value="">اختر عدد الساعات </option>
                                     @foreach ($times as $time)
-                                        <option value="{{ $time->id }}">{{ $time->time }}</option>
+                                        <option value="{{ $time->time }}">{{ $time->time }}</option>
                                     @endforeach
                                 </select>
-                                <x-input-error :messages="$errors->get('timeservice')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('hours_count')" class="mt-2" />
                             </div>
+
+                            <!-- حقل مدة التعاقد -->
                             <div class="mt-4">
-                                <x-input-label for="time_value" style="display: block" :value="__('مده التعاقد')" />
-                                <select id="time_value" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="time_value" required>
-                                    <option value="اسبوع">اسبوع </option>
-                                    <option value="اسبوعين">اسبوعين </option>
-                                    <option value="3 اسابيع">3 اسابيع</option>
-                                    <option value="4 اربع اسابيع">4 اسابيع</option>
-                                    <option value="5 خمس اسابيع ">5 اسابيع </option>
-                                    <option value="6 ست اسابيع ">6 اسابيع </option>
-                                    <option value="7 سبع اسابيع ">7 اسابيع </option>
-                                    <option value="8 ثمن اسابيع ">8 اسابيع </option>
-                                    <option value="9 تسع اسابيع ">9 اسابيع </option>
-                                    <option value="10 عشره اسابيع ">10 اسابيع </option>
-                                    <option value="11  اسبوع ">11 اسبوع </option>
-                                    <option value="3 شهور ">3 شهور </option>
-                                    <option value="4 شهور ">4 شهور </option>
-                                    <option value="5 شهور ">5 شهور </option>
-                                    <option value="6 شهور ">6 شهور </option>
-                                    <option value="7 شهور ">7 شهور </option>
-                                    <option value="8 شهور ">8 شهور </option>
-                                    <option value="9 شهور ">9 شهور </option>
-                                    <option value="10 شهور ">10 شهور </option>
-                                    <option value="11 شهر ">11 شهر </option>
-                                    <option value="12 شهر ">12 شهر </option>
-
-
-
+                                <x-input-label for="contract_duration" :value="__('مدة التعاقد')" />
+                                <select id="contract_duration" class="block mt-1 w-full form-control col-sm-9"
+                                    name="contract_duration" required>
+                                    <option value="">اختر مدة التعاقد</option>
+                                    @for ($i = 1; $i <= 12; $i++)
+                                        <option value="{{ $i }}">{{ $i }} شهور</option>
+                                    @endfor
                                 </select>
-                                <x-input-error :messages="$errors->get('time_value')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('contract_duration')" class="mt-2" />
                             </div>
+
+                            <!-- حقل تاريخ الزيارة الأولى -->
                             <div class="mt-4">
-                                <x-input-label for="first_visit" :value="__(' تاريخ أول زيارة ')" />
+                                <x-input-label for="first_visit" :value="__('تاريخ الزيارة الأولى')" />
                                 <x-text-input id="first_visit" class="block mt-1 w-full form-control col-sm-9"
                                     type="date" name="first_visit" :value="old('first_visit')" required />
                                 <x-input-error :messages="$errors->get('first_visit')" class="mt-2" />
                             </div>
+
+                            <!-- حقل طريقة الدفع -->
                             <div class="mt-4">
-                                <x-input-label for="payment_way" style="display: block" :value="__('اختر طريقة الدفع ')" />
-                                <select id="payment_way" class="mt-1 w-full form-control col-sm-9 custom-select"
-                                    name="payment_way" required>
-                                    {{-- <option value=""> اختر طريقة الدفع</option> --}}
-                                    <option value="cash"> الدفع عند استلام الخدمة(كاش)</option>
-                                    <option value="bank"> عن طريق تحويل بنكي</option>
+                                <x-input-label for="payment_method" :value="__('طريقة الدفع')" />
+                                <select id="payment_method" class="block mt-1 w-full form-control col-sm-9"
+                                    name="payment_method" required>
+                                    <option value="cash">الدفع نقداً عند الاستلام</option>
+                                    <option value="bank_transfer">تحويل بنكي</option>
                                 </select>
-                                <x-input-error :messages="$errors->get('payment_way')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
-                          
+                            <div class="mt-4">
+                                <div class="col-sm-9 offset-sm-3">
+                                    <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
+                                        {{ __('التالي ') }}
+                                    </x-primary-button>
+                                </div>
+                            </div>
                         </form>
-                        <div class="mt-4">
-                            <div class="col-sm-9 offset-sm-3">
-                                <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
-                                    <a href="{{ route('bank-information') }}">{{ __('التالي ') }}</a>
-                                </x-primary-button>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
