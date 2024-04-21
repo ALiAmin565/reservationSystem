@@ -42,7 +42,7 @@
     <div class="inner-header-banner">
         <span class="inner-header-banner-title">زيارة</span>
         <span class="inner-header-banner-after"><img src="Content/img/page-header-shape.svg" class="w-100"></span>
-        <img src="Content/img/zayara-header-banner.png" class="img-fluid w-100">
+        <img src="https://shining.ajeerco.com/wp-content/uploads/2023/10/hd.jpg" class="img-fluid w-100">
     </div>
     <div class="container">
         <div class="big-title-with-line"><span>زيــــــارة</span></div>

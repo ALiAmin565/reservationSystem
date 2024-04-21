@@ -10,9 +10,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="الشركة المتحدة للإستقدام هي شركة متخصصة في مجال إستقدام الأيدي العاملة و تقدم خدمة عقود التشغيل العمالة المنزلية">
-    <meta name="keywords"
-        content="المتحدة للتوظيف,استقدام,توظيف,تأجير عمالة,عاملات,كوادر بشرية,تأجير بالساعة,2020,تأجير بالساعة,خدمات أفراد,شركة سعودية,موظف,الاستقدام,مهنية,توفير,عمالة منزلية بالساعة,عمالة منزلية بالشهر,شركات,عمال,تأجير عمال">
+        content="  ">
+    <meta name=" ">
     <meta name="author" content="">
     <meta name="google-site-verification" content="JnGSi3Ss6KrIbeMaNeH7bjKzE2zpsFd1UHcSk28uNWI" />
     <!-- Google Tag Manager -->
@@ -33,11 +32,13 @@
         })(window, document, 'script', 'dataLayer', 'GTM-T5DZNKT');
     </script>
     <!-- End Google Tag Manager -->
-    <link rel="icon" href="Content/img/favicon.ico">
-    <title>المتحدة للاستقدام</title>
+       <link rel="icon" href="https://shining.ajeerco.com/wp-content/uploads/2023/10/cropped-logo6.png">
+
+        <title>نظافة ولمعة</title>
+
     <!-- Bootstrap core CSS -->
     <link href="Content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="Content/css/main3860.css?v=1" rel="stylesheet">
+    <link href="Content/css/main105.css?v=1" rel="stylesheet">
     <link href="Content/fakeloader.css" rel="stylesheet" />
     <link href="Content/sweetalert2.css" rel="stylesheet" />
 

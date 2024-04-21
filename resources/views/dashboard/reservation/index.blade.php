@@ -12,7 +12,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">All reservations</h5>
-                            <table class="table datatable text-center">
+                            <table class="table datatable text-center" style="    display: flex;flex-direction: column;">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>

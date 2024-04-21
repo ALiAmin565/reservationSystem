@@ -144,10 +144,11 @@
                                                                     التعاقدات
                                                                     السابقة</span>
                                                             </p>
-                                                            <table class="table">
+                                                            <table class="table" style="margin:-1rem;
+">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th scope="col">#</th>
+                                                            
                                                                         <th scope="col">منتهية
                                                                         </th>
                                                                         <th scope="col">منتظرة
@@ -163,11 +164,11 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th scope="row">1</th>
-                                                                        <td>Mark</td>
-                                                                        <td>Otto</td>
-                                                                        <td>@mdo</td>
-                                                                        <td>@mdo</td>
+                                                          
+                                                                        <td>1</td>
+                                                                        <td>2</td>
+                                                                        <td>3</td>
+                                                                        <td>3</td>
                                                                     </tr>
 
                                                                 </tbody>
@@ -192,4 +193,19 @@
 
         </div>
     </div>
+
+    <style>
+        .navbar-light .navbar-toggler-icon {
+    background-image: black !important;
+}
+    </style>
+// <Script>
+//     document.addEventListener("DOMContentLoaded", function() {
+//     var navbarTogglerIcon = document.querySelector('.navbar-light .navbar-toggler-icon');
+//     if (navbarTogglerIcon) {
+//         navbarTogglerIcon.style.backgroundImage = 'url("https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-3194221-2668357.png")';  
+//     }
+// });
+
+// </Script>
 </x-layout.master>

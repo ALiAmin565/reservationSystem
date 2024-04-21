@@ -1,13 +1,14 @@
 <?php
 
+use App\Models\BankAccount;
+use App\Models\DeterminedTime;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
-use App\Models\BankAccount;
-use App\Models\DeterminedTime;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,13 +66,11 @@ Route::middleware('auth')->group(function () {
         $user = auth()->user();
         return view('front.profile', compact('user'));
     })->name('profile');
-
     Route::post('/services-user', [ServiceReservationController::class, 'show'])->name('services-user.show');
-
     Route::get("/bank-information", function () {
         $data = BankAccount::where('id', 1)->first();
         return view('front.bank-information', compact('data'));
     })->name('bank-information');
-    
+    Route::resource('user_details', UserDetailController::class);
 });
 require __DIR__ . '/auth.php';

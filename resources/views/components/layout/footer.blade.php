@@ -1,7 +1,7 @@
 <footer class="">
 
     <div class="container">
-        <div class="align-items-center py-4 py-lg-5 row text-center text-lg-left">
+        <div class="align-items-center py-4 py-lg-5 row text-center text-lg-left"  style="display: none">
             <div class="col-md-3 mb-4 mb-lg-0 offset-md---1"><a class="" href="../Home.html"><img
                         src="Content/img/logo.png" class="img-fluid"></a> </div>
             <div class="col-md-2 mb-4 mb-lg-0">
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="bg-white font-weight-light py-3 text-black text-center">
-        جميع الحقوق محفوظة &copy;2022 المتحدة للاستقدام. <a href="javascript:;" class="text-brand" data-toggle="modal"
-            data-target=".privacy">سياسة الخصوصية</a>
+        جميع الحقوق محفوظة &copy;2024 نظافة ولمعة<a href="javascript:;" class="text-brand" data-toggle="modal"
+            data-target=".privacy">     سياسة الخصوصية    </a>
     </div>
 </footer> <!-- Modal -->
