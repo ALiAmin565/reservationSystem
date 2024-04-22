@@ -76,5 +76,6 @@ Route::middleware('auth')->group(function () {
         return view('front.bank-information', compact('data'));
     })->name('bank-information');
     Route::resource('user_details', UserDetailController::class);
+    
 });
 require __DIR__ . '/auth.php';
