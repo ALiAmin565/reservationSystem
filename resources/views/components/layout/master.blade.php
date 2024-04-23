@@ -38,7 +38,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="Content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="Content/css/main105.css?v=1" rel="stylesheet">
+    <link href="Content/css/main10.css?v=1" rel="stylesheet">
     <link href="Content/fakeloader.css" rel="stylesheet" />
     <link href="Content/sweetalert2.css" rel="stylesheet" />
 

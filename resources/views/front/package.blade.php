@@ -58,7 +58,7 @@
                             <span class="pr-0 pr-md-4">الباقات المميزة</span>
                             <div class="align-items-center d-flex flex-column flex-md-row">
                                 <span class="bg-white fs-18 p-2" style="z-index: 2;">أو</span>
-                                <a href="{{route('design-plan')}}" class="btn btn-danger btn-lg text-white"
+                                <a href="{{route('design-plan')}}" class="btn btn-success btn-lg text-white"
                                     style="z-index: 2;border: 10px solid #FFF;border-radius: 3rem;display: flex;align-items: center;">
                                     <img src="Content/img/click1.png">
                                     صمم باقتك بنفسك
@@ -70,8 +70,8 @@
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item periods-filter ">
                                         <!-- Morning Period Link -->
-                                        <a href="{{ route('services.index', ['period' => 'morning']) }}"
-                                            class="nav-link {{ $period === 'morning' ? 'active' : '' }}">
+                                        <a href="{{ route('services.index', ['period' => 'صباحي']) }}"
+                                            class="nav-link {{ $period === 'صباحي' ? 'active' : '' }}">
                                             <div><img src="Content/img/filter-check.png" class="mr-1">الفترة الصباحية
                                             </div>
                                             <div class="fs-12">فترة التوصيل من 10 ص إلى 12 م</div>
@@ -80,8 +80,8 @@
                                     </li>
                                     <li class="nav-item">
                                         <!-- Evening Period Link -->
-                                        <a href="{{ route('services.index', ['period' => 'evening']) }}"
-                                            class="nav-link {{ $period === 'evening' ? 'active' : '' }}">
+                                        <a href="{{ route('services.index', ['period' => 'مسائي']) }}"
+                                            class="nav-link {{ $period === 'مسائي' ? 'active' : '' }}">
                                             <div><img src="Content/img/filter-check.png" class="mr-1">الفترة المسائية
                                             </div>
                                             <div class="fs-12">فترة التوصيل من 7 م إلى 9 م</div>
@@ -174,7 +174,7 @@
                                                                                 </div>
                                                                                 <div class=" mt-2">
                                                                                     السعر : <span
-                                                                                        class="text-danger line-through">
+                                                                                        class="text-success line-through">
                                                                                         {{ $service->price }}
                                                                                         ريال
                                                                                     </span>
@@ -196,7 +196,7 @@
                                                                             <form action="{{ route('services-user.show') }}" method="POST" style="display: inline;">
                                                                                 @csrf
                                                                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
-                                                                                <button type="submit" class="btn btn-danger btn-sm btn-block">احجز الآن</button>
+                                                                                <button type="submit" class="btn btn-success btn-sm btn-block">احجز الآن</button>
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -208,9 +208,9 @@
                                             @endif
                                             <div class="text-center mt-4">
                                                 <a href="javascript:;" id="load1"
-                                                    class="btn btn-outline-danger loadmore rounded-32">
+                                                    class="btn  btn-outline-success loadmore rounded-32">
                                                     تحميل المزيد
-                                                    <img src="Content/img/more-arrow.png" />
+                                                    <!--<img src="Content/img/more-arrow.png" />-->
                                                 </a>
                                             </div>
                                         </div>

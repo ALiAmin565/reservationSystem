@@ -6,7 +6,7 @@
             <h1>Edit User</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Edit User</li>
+                    <li class="breadcrumb-item active">تعديل بيانات المستخدم</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -16,14 +16,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Edit User</h5>
+                            <h5 class="card-title">تعديل بيانات المستخدم</h5>
                             <!-- User Edit Form -->
                             <form method="POST" action="{{ route('users.update', $user->id) }}">
                                 @csrf
                                 @method('PUT') <!-- Override the HTTP method to PUT -->
 
                                 <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                    <label for="inputText" class="col-sm-2 col-form-label">الاسم</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputText" name="name"
                                             value="{{ $user->name }}" required>
@@ -31,7 +31,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">البريد الالكتروني</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="inputEmail" name="email"
                                             value="{{ $user->email }}" required>
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">الرقم السري</label>
                                     <div class="col-sm-10">
                                         <input type="password" class="form-control" id="inputPassword" name="password"
                                             placeholder="Enter new password">
@@ -47,8 +47,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirm
-                                        Password</label>
+                                    <label for="inputConfirmPassword" class="col-sm-2 col-form-label">تأكيد الرقم السري</label>
                                     <div class="col-sm-10">
                                         <input type="password" class="form-control" id="inputConfirmPassword"
                                             name="password_confirmation" placeholder="Confirm new password">
@@ -56,7 +55,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <legend class="col-form-label col-sm-2 pt-0">Role</legend>
+                                    <legend class="col-form-label col-sm-2 pt-0">الصلاحية</legend>
                                     <div class="col-sm-10">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="role" id="adminRadio"
@@ -77,7 +76,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-sm-10 offset-sm-2">
-                                        <button type="submit" class="btn btn-primary">Update User</button>
+                                        <button type="submit" class="btn btn-primary">تحديث المعلومات</button>
                                     </div>
                                 </div>
                             </form><!-- End User Edit Form -->

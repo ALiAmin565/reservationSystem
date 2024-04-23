@@ -50,7 +50,7 @@
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white ">صمم باقتك</div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-                        <span class="text-danger">
+                        <span class="text-success">
                             <div class="validation-summary-valid" data-valmsg-summary="true">
                                 <ul>
                                     <li style="display:none"></li>

@@ -7,7 +7,7 @@
             <h1>Data Tables</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Package Data</li>
+                    <li class="breadcrumb-item active">معلومات الباقات</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -18,16 +18,16 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Packages</h5>
+                            <h5 class="card-title">الباقات</h5>
 
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Service Name</th>
-                                        <th scope="col">Number of Visits</th>
-                                        <th scope="col">Number of Man Services</th>
+                                        <th scope="col">اسم الخدمة</th>
+                                        <th scope="col">عدد الزيارات</th>
+                                        <th scope="col">عدد مقدمه الخدمة في الزيارات</th>
                                     </tr>
                                 </thead>
                                 <tbody>

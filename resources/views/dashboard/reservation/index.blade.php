@@ -12,15 +12,15 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">All reservations</h5>
-                            <table class="table datatable text-center" style="    display: flex;flex-direction: column;">
+                            <table class="table datatable text-center" >
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">User Name</th>
-                                        <th scope="col">Reservation Name</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">اسم المستخدم</th>
+                                        <th scope="col">اسم الحجز</th>
+                                        <th scope="col">الوقت</th>
+                                        <th scope="col">الحالة</th>
+                                        <th scope="col">الاجراءات</th>
                                     </tr>
                                 </thead>
                                 <tbody>

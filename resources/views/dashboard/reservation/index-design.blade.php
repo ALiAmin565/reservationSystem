@@ -12,21 +12,21 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">All reservations</h5>
-                            <table class="table datatable text-center" style="    display: flex;flex-direction: column;">
+                            <table class="table datatable text-center" >
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">User Name</th>
-                                        <th scope="col">Reservation Name</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">اسم المستخدم</th>
+                                        <th scope="col">اسم الحجز</th>
+                                        <th scope="col">الوقت</th>
+                                        <th scope="col">الحالة</th>
+                                        <th scope="col">الاجراءات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($userServices as $userService)
                                         <tr>
-                                            <th scope="row">{{ $loop->index + 1 }}</th>
+                                            <td scope="row">{{ $loop->index + 1 }}</td>
                                             <td>{{ $userService->user->name }}</td>
                                             <td>باقة مصممة </td>
                                             <td>{{ $userService->hours_count }}</td>

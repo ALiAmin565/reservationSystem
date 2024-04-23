@@ -7,7 +7,7 @@
             <h1>Edit Accounts</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Accounts </li>
+                    <li class="breadcrumb-item active">الحسابات </li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -24,12 +24,12 @@
                                 @method('PUT')
                                 <!-- Edit Button -->
                                 <div class="mb-3">
-                                    <button type="button" onclick="toggleEdit()" class="btn btn-secondary">Edit</button>
+                                    <button type="button" onclick="toggleEdit()" class="btn btn-secondary">تعديل</button>
                                 </div>
 
                                 <!-- Form Fields, initially disabled if $account is set -->
                                 <div class="row mb-3">
-                                    <label for="account_name" class="col-sm-2 col-form-label">Account Name</label>
+                                    <label for="account_name" class="col-sm-2 col-form-label">اسم الحساب البنكي</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="account_name" class="form-control" id="account_name"
                                             value="{{ $account->account_name ?? '' }}" required
@@ -38,7 +38,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="account_number" class="col-sm-2 col-form-label">Account Number</label>
+                                    <label for="account_number" class="col-sm-2 col-form-label">رقم الحساب</label>
                                     <div class="col-sm-10">
                                         <input type="number" name="account_number" class="form-control" id="account_number"
                                             value="{{ $account->account_number ?? '' }}" required
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="bank_name" class="col-sm-2 col-form-label">Bank Name</label>
+                                    <label for="bank_name" class="col-sm-2 col-form-label">الرقم البنكي</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="bank_name" class="form-control" id="bank_name"
                                             value="{{ $account->bank_name ?? '' }}" required
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="whatsapp_number" class="col-sm-2 col-form-label">WhatsApp Number</label>
+                                    <label for="whatsapp_number" class="col-sm-2 col-form-label">رقم الواتساب</label>
                                     <div class="col-sm-10">
                                         <input type="number" name="whatsapp_number" class="form-control"
                                             id="whatsapp_number" value="{{ $account->whatsapp_number ?? '' }}" required
@@ -67,7 +67,7 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-10 offset-sm-2">
                                         <button type="submit" class="btn btn-primary" {{ $account ? 'disabled' : '' }}>
-                                            Update
+                                            تحديث
                                         </button>
                                     </div>
                                 </div>

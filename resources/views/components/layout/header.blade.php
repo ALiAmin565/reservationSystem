@@ -10,16 +10,17 @@
 
             <div class="collapse navbar-collapse" style="    display: flex;justify-content: center;font-size: xx-large;"
                 id="navbarToggler02">
-                <ul class=" mr-3 mt-2 mt-lg-0 navbar-nav" style="display: flex;
+                <ul class=" mr-3  mt-lg-0 navbar-nav" style="display: flex;
     align-items: center;">
+                     <li class='nav-item '>
+                        <a class="nav-link" href="https://shining.ajeerco.com/" id="dropdown07"
+                            aria-haspopup="true" aria-expanded="false">الرئيسية</a>
+                       
+                    </li>
                     <li class='nav-item '>
                         <a class="nav-link" href="https://shining.ajeerco.com/#about">من نحن</a>
                     </li>
-                    <!--<li class='nav-item  dropdown'>-->
-                    <!--    <a class="nav-link dropdown-toggle" href="https://shining.ajeerco.com/#ser" id="dropdown07" data-toggle="dropdown"-->
-                    <!--        aria-haspopup="true" aria-expanded="false">خدماتنا</a>-->
-                       
-                    <!--</li>-->
+                   
                     <li class='nav-item  '>
                         <a class="nav-link" href="#" id="dropdown11" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -74,7 +75,30 @@
     #navbarToggler02 {
     display: none;
 }
+#logo {
+    width: 120px !important;
+        margin-bottom: -1.5rem;
 
+}
+#top,#top .navbar-toggler{
+        background-color: #ffffff !important;
+}
+#top .nav-link{
+    color: #393939;
+        font-size: large;
+
+}
+#top .nav-link:hover{
+     color: #38b34a;
+}
+.navbar-light .navbar-toggler-icon{
+    font-size: x-large;
+    margin-top: 2rem;
+}
+.navbar-nav{
+        margin-top: 1.5rem !important;
+    margin-bottom: -2rem;
+}
 </style>
 <script>
 document.addEventListener("DOMContentLoaded", function() {

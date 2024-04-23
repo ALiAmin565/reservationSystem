@@ -11,15 +11,15 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">User Table</h5>
+                            <h5 class="card-title">جدول المستخدمين</h5>
                             <table class="table datatable text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Role</th>
-                                        <th scope="col">Start Date</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">اسم المستخدم</th>
+                                        <th scope="col">الصلاحية</th>
+                                        <th scope="col">تاريخ التسجيل</th>
+                                        <th scope="col">الإجراءات</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,7 +35,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form> --}}
-                                                <a href="{{ route('users.edit', $user) }}" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('users.edit', $user) }}" class="btn btn-warning">تعديل</a>
                                             </td>
                                         </tr>
                                     @endforeach
