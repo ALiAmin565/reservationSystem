@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ServiceManReservation extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'service_name',
@@ -17,7 +19,9 @@ class ServiceManReservation extends Model
         'number_of_man_services',
         'period_id',
         'time_id',
-        'active'
+        'active',
+        'number_days',
+        'service_charge'
     ];
 
     public function period()

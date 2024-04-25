@@ -190,6 +190,8 @@
                     </i>
                 </a>
             </li>
+
+        
             <!-- End Forms Nav -->
 
         </ul>
@@ -230,6 +232,53 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#contract_duration').change(function() {
+                var days = parseInt($(this).val(), 10); // Parse the day value as an integer
+                var visits = Math.ceil(days / 7); // Calculate visits, rounding up to cover partial weeks
+                // Set the integer number of visits in the input field
+                // if visit biger than 4 reduce value bu  1 
+                if (visits > 4) {
+                    visits = visits - 1;
+                }
+
+                $('#number_of_visits').val(visits); // Set the integer number of visits in the input field
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const priceInput = document.querySelector('input[name="price"]');
+            const discountInput = document.querySelector('input[name="discount"]');
+            const serviceChargeInput = document.querySelector('input[name="service_charge"]');
+            const sumInput = document.getElementById('Sum');
+
+            function calculateTotal() {
+                const price = parseFloat(priceInput.value) || 0;
+                const discount = parseFloat(discountInput.value) || 0;
+                const serviceCharge = parseFloat(serviceChargeInput.value) || 0;
+
+                // Calculate discount amount
+                const discountAmount = price * (discount / 100);
+
+                // Calculate service charge amount
+                const serviceChargeAmount = price * (serviceCharge / 100);
+
+                // Calculate final price
+                const total = price - discountAmount + serviceChargeAmount;
+
+                sumInput.value = total.toFixed(2);
+            }
+
+            // Event listeners for inputs
+            priceInput.addEventListener('input', calculateTotal);
+            discountInput.addEventListener('input', calculateTotal);
+            serviceChargeInput.addEventListener('input', calculateTotal);
+        });
+    </script>
+
 </body>
 
 </html>

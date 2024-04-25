@@ -52,4 +52,19 @@ class User extends Authenticatable
     public function isAdmin() {
         return $this->role === 'admin';
     }
+
+    public function isUser() {
+        return $this->role === 'user';
+    }
+
+    // reservation
+    public function userServices()
+    {
+        return $this->hasMany(UserService::class, 'user_id');
+    }
+
+    public function userDetails()
+    {
+        return $this->hasMany(UserDetail::class, 'user_id');
+    }
 }

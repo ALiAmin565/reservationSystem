@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Period;
+use App\Models\UserService;
 use Illuminate\Http\Request;
 use App\Models\DeterminedTime;
 use App\Models\ServiceManReservation;
@@ -31,19 +32,22 @@ class ServiceManReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'service_name' => 'required|string',
-            'price' => 'required|numeric',
-            'discount' => 'nullable|numeric',
-            'number_of_visits' => 'required|int',
-            'period_id' => 'required|int',
-            'time_id' => 'required|int',
-            'number_of_man_services' => 'nullable|int'
-        ]);
-    
-        $reservation = new ServiceManReservation($validated);
+        // $validated = $request->validate([
+        //     'service_name' => 'required|string',
+        //     'price' => 'required|numeric',
+        //     'discount' => 'nullable|numeric',
+        //     'number_of_visits' => 'required|int',
+        //     'period_id' => 'required|int',
+        //     'time_id' => 'required|int',
+        //     'number_of_man_services' => 'nullable|int',
+        //     // 'active' => 'required|boolean',
+        //     'number_days' => 'required|int',
+        //     'service_charge' => 'nullable|numeric'
+        // ]);
+
+        $reservation = new ServiceManReservation($request->all());
         $reservation->save();
-    
+
         return redirect()->route('reservations-admin.index')->with('success', 'Reservation created successfully!');
     }
 
@@ -58,24 +62,31 @@ class ServiceManReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ServiceManReservation $serviceManReservation)
+    public function edit($id)
     {
-        //
+        $reservation = ServiceManReservation::findOrFail($id);
+        $periods = Period::all();
+        $times = DeterminedTime::all();
+        return view('dashboard.package.edit', compact('reservation', 'periods', 'times'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ServiceManReservation $serviceManReservation)
+    public function update(Request $request, $id)
     {
-        //
+        $reservation = ServiceManReservation::findOrFail($id);
+        $reservation->update($request->all());
+        return redirect()->route('reservations-admin.index')->with('success', 'Reservation updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ServiceManReservation $serviceManReservation)
+    public function destroy($id)
     {
-        //
+        $reservation = ServiceManReservation::findOrFail($id);
+        $reservation->delete();  // Soft delete the reservation
+        return redirect()->route('reservations-admin.index')->with('success', 'Reservation deleted successfully!');
     }
 }

@@ -77,6 +77,45 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        {{-- transaction_id --}}
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> الطلب</th>
+                                    <th scope="col">رقم الطلب</th>
+                                    <th scope="col">اجمالي السعر الطلب</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>
+                                        @if ($checkTable == 'userService')
+                                            {{ Auth::user()->userServices->last()->reservation->service_name }}
+                                        @elseif($checkTable == 'reservation')
+                                            باقة الاشتراك مخصصة
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if ($checkTable == 'userService')
+                                            {{ Auth::user()->userServices->last()->reservation->id }}
+                                        @elseif($checkTable == 'reservation')
+                                            {{ Auth::user()->userDetails->last()->transaction_id }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($checkTable == 'userService')
+                                            {{ Auth::user()->userServices->last()->reservation->price }}
+                                        @elseif($checkTable == 'reservation')
+                                            احسبها نفسك
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>

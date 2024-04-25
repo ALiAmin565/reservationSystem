@@ -61,7 +61,8 @@
                                 </ul>
                             </div>
                         </span>
-                        <form method="POST" action="#" class="regForm" id="registerForm" role="form">
+                        <form method="POST" action="{{ route('store.user.services') }}" class="regForm"
+                            id="registerForm" role="form">
                             @csrf
                             {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" /> --}}
                             <!-- حقل المدينة -->
@@ -119,7 +120,14 @@
                                     type="text" name="phone_number" :value="old('phone_number')" required />
                                 <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
                             </div>
-
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+                            <input type="hidden" name="reservation_id" value="{{ $service->id }}" />
+                            <div class="mt-4">
+                                <x-input-label for="num_hour" :value="__(' أسم الباقة ')" />
+                                <x-text-input id="num_hour" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="num_hour" :value="$service->service_name" disabled />
+                                <x-input-error :messages="$errors->get('num_hour')" class="mt-2" />
+                            </div>
                             <div class="mt-4">
                                 <x-input-label for="num_service" :value="__(' عدد مقدمي الخدمة ')" />
                                 <x-text-input id="num_service" class="block mt-1 w-full form-control col-sm-9"
@@ -138,19 +146,78 @@
                                     type="text" name="num_hour" :value="$service->time->time" disabled />
                                 <x-input-error :messages="$errors->get('num_hour')" class="mt-2" />
                             </div>
+                            @php
+                                $days = $service->number_days; // Assume this is set and is a numeric value.
+                                $label = '';
+                                $value = 0;
+
+                                if ($days == 7) {
+                                    $label = 'أسبوع';
+                                    $value = 1;
+                                } elseif ($days == 14) {
+                                    $label = 'أسبوعين';
+                                    $value = 2;
+                                } elseif ($days == 21) {
+                                    $label = 'ثلاثة أسابيع';
+                                    $value = 3;
+                                } elseif ($days == 28) {
+                                    $label = 'أربعة أسابيع';
+                                    $value = 4;
+                                } elseif ($days == 30) {
+                                    $label = 'شهر';
+                                    $value = 1;
+                                } elseif ($days == 60) {
+                                    $label = 'شهرين';
+                                    $value = 2;
+                                } elseif ($days == 90) {
+                                    $label = 'ثلاثة أشهر';
+                                    $value = 3;
+                                } elseif ($days == 120) {
+                                    $label = 'أربعة أشهر';
+                                    $value = 4;
+                                } elseif ($days == 150) {
+                                    $label = 'خمسة أشهر';
+                                    $value = 5;
+                                } elseif ($days == 180) {
+                                    $label = 'ستة أشهر';
+                                    $value = 6;
+                                } elseif ($days == 210) {
+                                    $label = 'سبعة أشهر';
+                                    $value = 7;
+                                } elseif ($days == 240) {
+                                    $label = 'ثمانية أشهر';
+                                    $value = 8;
+                                } elseif ($days == 270) {
+                                    $label = 'تسعة أشهر';
+                                    $value = 9;
+                                } elseif ($days == 300) {
+                                    $label = 'عشرة أشهر';
+                                    $value = 10;
+                                } elseif ($days == 330) {
+                                    $label = 'أحد عشر شهرًا';
+                                    $value = 11;
+                                } elseif ($days == 360) {
+                                    $label = 'سنة';
+                                    $value = 12;
+                                } else {
+                                    $label = 'يوم';
+                                    $value = $days;
+                                }
+                            @endphp
+
                             <div class="mt-4">
                                 <x-input-label for="time_value" :value="__(' مده التعاقد ')" />
                                 <x-text-input id="time_value" class="block mt-1 w-full form-control col-sm-9"
-                                    type="text" name="time_value" :value="old('time_value')" disabled />
+                                    type="text" name="time_value" :value="$label" disabled />
                                 <x-input-error :messages="$errors->get('time_value')" class="mt-2" />
                             </div>
 
                             <!-- حقل تاريخ الزيارة الأولى -->
                             <div class="mt-4">
-                                <x-input-label for="first_visit" :value="__('تاريخ الزيارة الأولى')" />
-                                <x-text-input id="first_visit" class="block mt-1 w-full form-control col-sm-9"
-                                    type="date" name="first_visit" :value="old('first_visit')" required />
-                                <x-input-error :messages="$errors->get('first_visit')" class="mt-2" />
+                                <x-input-label for="first_time" :value="__('تاريخ الزيارة الأولى')" />
+                                <x-text-input id="first_time" class="block mt-1 w-full form-control col-sm-9"
+                                    type="date" name="first_time" :value="old('first_time')" required />
+                                <x-input-error :messages="$errors->get('first_time')" class="mt-2" />
                             </div>
 
                             <!-- حقل طريقة الدفع -->
@@ -163,10 +230,24 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
+                            @php
+                                $price = $service->price;
+                                $discount = $service->discount;
+                                $serviceCharge = $service->service_charge;
+                                $discountAmount = $price * ($discount / 100);
+                                $serviceChargeAmount = $price * ($serviceCharge / 100);
+                                $totalPrice = $price - $discountAmount + $serviceChargeAmount;
+                            @endphp
+                            <div class="mt-4">
+                                <x-input-label for="num_visit" :value="__('أجمالي السعر ')" />
+                                <x-text-input id="num_visit" class="block mt-1 w-full form-control col-sm-9"
+                                    type="text" name="num_visit" :value="$totalPrice" disabled />
+                                <x-input-error :messages="$errors->get('num_visit')" class="mt-2" />
+                            </div>
                             <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
                                     <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
-                                        <a href="{{ route('bank-information') }}">{{ __('التالي ') }}</a>
+                                        {{ __('التالي ') }}
                                     </x-primary-button>
                                 </div>
                             </div>

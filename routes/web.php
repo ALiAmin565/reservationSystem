@@ -1,12 +1,16 @@
 <?php
 
+use App\Models\UserDetail;
 use App\Models\BankAccount;
+use App\Models\UserService;
 use App\Models\DeterminedTime;
+use App\Models\ServiceManReservation;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
 
@@ -41,12 +45,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/reservations/{status}', [DashboardController::class, 'fetchReservations'])->name('reservations.fetch');
     Route::get('/reservations/{reservation}/toggle_active', [DashboardController::class, 'toggleActive'])->name('reservations.toggle_active');
+    // Route::put('/reservations/{reservation}', [DashboardController::class, 'update'])->name('reservations.update');
+    // Route::delete('/reservations/{reservation}', [DashboardController::class, 'destroy'])->name('reservations.destroy');
     // reservations-design.fetch
     Route::get('/reservations-design', [DashboardController::class, 'fetchReservationsDesign'])->name('reservations-design.fetch');
     Route::get('/reservations-design/{reservation}/toggle_active', [DashboardController::class, 'toggleActiveDesign'])->name('reservations-design.toggle_active');
 
     Route::resource('reservations-admin', ServiceManReservationController::class);
     Route::resource('accounts', BankAccountController::class);
+ 
 });
 
 
@@ -68,14 +75,23 @@ Route::middleware('auth')->group(function () {
     })->name('design-plan');
     Route::get("/my-profile", function () {
         $user = auth()->user();
-        return view('front.profile', compact('user'));
+        // Number Of active reservations    
+        $GetUserReservation =   UserService::where('user_id', $user->id)->pluck('reservation_id')->toArray();
+        $activeReservations = ServiceManReservation::whereIn('id', $GetUserReservation)->where('active', 1)->count();
+        $activeUserDetail = UserDetail::where('user_id', $user->id)->where('active', 1)->count();
+        $activeReservations = $activeReservations + $activeUserDetail;
+        // Number Of inactive reservations
+        $inactiveReservations =     ServiceManReservation::whereIn('id', $GetUserReservation)->where('active', 0)->count();
+        $inactiveUserDetail = UserDetail::where('user_id', $user->id)->where('active', 0)->count();
+        $inactiveReservations = $inactiveReservations + $inactiveUserDetail;
+        return view('front.profile', compact('user', 'activeReservations', 'inactiveReservations'));
     })->name('profile');
     Route::post('/services-user', [ServiceReservationController::class, 'show'])->name('services-user.show');
-    Route::get("/bank-information", function () {
-        $data = BankAccount::where('id', 1)->first();
-        return view('front.bank-information', compact('data'));
-    })->name('bank-information');
+    // Route::get("/bank-information", function () {
+    //     $data = BankAccount::where('id', 1)->first();
+    //     return view('front.bank-information', compact('data'));
+    // })->name('bank-information');
     Route::resource('user_details', UserDetailController::class);
-    
+    Route::post('/store-user-services', [UserServiceController::class, 'store'])->name('store.user.services');
 });
 require __DIR__ . '/auth.php';

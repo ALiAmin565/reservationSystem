@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserDetail;
+use App\Models\BankAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +36,11 @@ class UserDetailController extends Controller
             'contract_duration' => 'required|integer',
             'first_visit' => 'required|date',
             'payment_method' => 'required|string|max:255',
+            'period' => 'required|string|max:255',
         ]);
+
+        // Make Transaction ID  generate  6 digit random number
+        $validated['transaction_id'] = rand(100000, 999999);
 
         $userDetail = new UserDetail();
         $userDetail->city = $validated['city'];
@@ -43,6 +48,7 @@ class UserDetailController extends Controller
         $userDetail->building_number = $validated['building_number'];
         $userDetail->floor_number = $validated['floor_number'];
         $userDetail->house_number = $validated['house_number'];
+        $userDetail->hours_count = $validated['hours_count'];
         $userDetail->full_address = $validated['full_address'];
         $userDetail->phone_number = $validated['phone_number'];
         $userDetail->service_count = $validated['service_count'];
@@ -50,12 +56,17 @@ class UserDetailController extends Controller
         $userDetail->contract_duration = $validated['contract_duration'];
         $userDetail->first_visit = $validated['first_visit'];
         $userDetail->payment_method = $validated['payment_method'];
+        $userDetail->transaction_id = $validated['transaction_id'];
+        // Period
+        $userDetail->period = $validated['period'];
         $userDetail->user_id =   Auth::User()->id;  //add user id here to make it belong to the logged in
 
         $userDetail->save();
 
         // return to route in  web.php with message
-        return redirect(route("bank-information"))->with('message','Your details have been added!');
+        $checkTable = 'reservation';
+        $data = BankAccount::where('id', 1)->first();
+        return view('front.bank-information', compact('checkTable', 'data'))->with('message', 'Your details have been added!');
     }
 
 

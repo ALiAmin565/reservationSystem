@@ -58,7 +58,7 @@
                             <span class="pr-0 pr-md-4">الباقات المميزة</span>
                             <div class="align-items-center d-flex flex-column flex-md-row">
                                 <span class="bg-white fs-18 p-2" style="z-index: 2;">أو</span>
-                                <a href="{{route('design-plan')}}" class="btn btn-success btn-lg text-white"
+                                <a href="{{ route('design-plan') }}" class="btn btn-success btn-lg text-white"
                                     style="z-index: 2;border: 10px solid #FFF;border-radius: 3rem;display: flex;align-items: center;">
                                     <img src="Content/img/click1.png">
                                     صمم باقتك بنفسك
@@ -110,21 +110,21 @@
                                                 @foreach ($services as $service)
                                                     <div class="card Mshift" id="Mshift" style="display:none;">
                                                         <div class="card-header" role="tab"
-                                                            id="heading_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->price) }}">
+                                                            id="heading_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->id) }}">
                                                             <h5 class="mb-0">
                                                                 <a data-toggle="collapse"
-                                                                    href="#collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->price) }}"
+                                                                    href="#collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->id) }}"
                                                                     aria-expanded="false"
-                                                                    aria-controls="collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->price) }}">
+                                                                    aria-controls="collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->id) }}">
                                                                     <span>زيارة {{ $service->number_of_visits }} ساعات
                                                                         {{ $service->period->period }} بـ
                                                                         {{ $service->price }} ريال </span>
                                                                 </a>
                                                             </h5>
                                                         </div>
-                                                        <div id="collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->price) }}"
+                                                        <div id="collapse_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->id) }}"
                                                             class="collapse " role="tabpanel"
-                                                            aria-labelledby="heading_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->price) }}"
+                                                            aria-labelledby="heading_{{ Illuminate\Support\Str::slug($service->name . '-' . $service->id) }}"
                                                             data-parent="#accordionFixed">
                                                             <div class="card-body">
                                                                 <div class="row">
@@ -141,6 +141,28 @@
                                                                                     ريال </div>
 
                                                                             </div>
+
+                                                                            @php
+                                                                                $discountAmount =
+                                                                                    ($service->price *
+                                                                                        $service->discount) /
+                                                                                    100;
+                                                                                $priceAfterDiscount =
+                                                                                    $service->price - $discountAmount;
+
+                                                                                $serviceChargeAmount =
+                                                                                    ($priceAfterDiscount *
+                                                                                        $service->service_charge) /
+                                                                                    100;
+
+                                                                                $finalPrice =
+                                                                                    $priceAfterDiscount +
+                                                                                    $serviceChargeAmount;
+
+                                                                                $finalPriceWithoutDiscount =
+                                                                                    $service->price +
+                                                                                    $serviceChargeAmount;
+                                                                            @endphp
                                                                             <div class="col-md-7">
                                                                                 <div
                                                                                     class="text-808080 fs-20 font-weight-normal mb-1">
@@ -149,19 +171,19 @@
                                                                                     {{ $service->time->time }} ساعات
                                                                                     للفترة
                                                                                     {{ $service->period->period }} بـ
-                                                                                    {{ $service->price }} ريال
+                                                                                    {{ $finalPrice }} ريال
                                                                                 </div>
                                                                                 <div class="row">
+                                                                                    {{-- <div
+                                                                                        class="col-6 fs-14 text-808080">
+                                                                                        الجنسية : أوغندا </div> --}}
                                                                                     <div
                                                                                         class="col-6 fs-14 text-808080">
-                                                                                        الجنسية : أوغندا </div>
-                                                                                    <div
-                                                                                        class="col-6 fs-14 text-808080">
-                                                                                        {{ $service->number_of_visits }}
+                                                                                        {{ (int) $service->number_of_visits / 4 }}
                                                                                         زيارة اسبوعيا </div>
                                                                                     <div
                                                                                         class="col-6 fs-14 text-808080">
-                                                                                        1
+                                                                                        {{ $service->number_of_man_services }}
                                                                                         مقدمة خدمة</div>
                                                                                     <div
                                                                                         class="col-6 fs-14 text-808080">
@@ -175,14 +197,14 @@
                                                                                 <div class=" mt-2">
                                                                                     السعر : <span
                                                                                         class="text-success line-through">
-                                                                                        {{ $service->price }}
+                                                                                        {{ $finalPriceWithoutDiscount }}
                                                                                         ريال
                                                                                     </span>
                                                                                 </div>
                                                                                 <div class=" mb-3">
                                                                                     السعر بعد الخصم : <span
                                                                                         class="">
-                                                                                        {{ $service->discount }}
+                                                                                        {{ $finalPrice }}
                                                                                         ريال
                                                                                     </span>
                                                                                 </div>
@@ -193,10 +215,17 @@
 
 
                                                                         <div>
-                                                                            <form action="{{ route('services-user.show') }}" method="POST" style="display: inline;">
+                                                                            <form
+                                                                                action="{{ route('services-user.show') }}"
+                                                                                method="POST"
+                                                                                style="display: inline;">
                                                                                 @csrf
-                                                                                <input type="hidden" name="service_id" value="{{ $service->id }}">
-                                                                                <button type="submit" class="btn btn-success btn-sm btn-block">احجز الآن</button>
+                                                                                <input type="hidden"
+                                                                                    name="service_id"
+                                                                                    value="{{ $service->id }}">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-success btn-sm btn-block">احجز
+                                                                                    الآن</button>
                                                                             </form>
                                                                         </div>
                                                                     </div>

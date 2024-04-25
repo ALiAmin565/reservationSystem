@@ -28,6 +28,8 @@
                                         <th scope="col">اسم الخدمة</th>
                                         <th scope="col">عدد الزيارات</th>
                                         <th scope="col">عدد مقدمه الخدمة في الزيارات</th>
+                                        <th scope="col">تعديل</th>
+                                        <th scope="col">حذف</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,6 +39,16 @@
                                             <td>{{ $reservation->service_name }}</td>
                                             <td>{{ $reservation->number_of_visits }}</td>
                                             <td>{{ $reservation->number_of_man_services }}</td>
+                                            <td>
+                                                <a href="{{ route('reservations-admin.edit', $reservation->id) }}" class="btn btn-primary">Edit</a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('reservations-admin.destroy', $reservation) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -12,14 +12,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">All reservations</h5>
-                            <table class="table datatable text-center" >
+                            <table class="table datatable text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">اسم المستخدم</th>
                                         <th scope="col">اسم الحجز</th>
                                         <th scope="col">الوقت</th>
-                                        <th scope="col">الحالة</th>
+                                        <th scope="col">رقم الطلب </th>
                                         <th scope="col">الاجراءات</th>
                                     </tr>
                                 </thead>
@@ -30,7 +30,7 @@
                                             <td>{{ $userService->user->name }}</td>
                                             <td>باقة مصممة </td>
                                             <td>{{ $userService->hours_count }}</td>
-                                            <td>{{ $userService->active ? 'Active' : 'Inactive' }}</td>
+                                            <td>{{ $userService->transaction_id }}</td>
                                             <td>
                                                 <a href="{{ route('reservations-design.toggle_active', $userService) }}"
                                                     class="btn btn-{{ $userService->active ? 'secondary' : 'success' }}">

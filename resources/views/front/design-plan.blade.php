@@ -154,6 +154,16 @@
                                 <x-input-error :messages="$errors->get('hours_count')" class="mt-2" />
                             </div>
 
+                            <div class="mt-4">
+                                <x-input-label for="period" :value="__('موعد الزيارة')" />
+                                <select id="period" class="block mt-1 w-full form-control col-sm-9" name="period"
+                                    required>
+                                    <option value=""> اختر موعد الزيارة </option>
+                                    <option value="صباحي">صباحي</option>
+                                    <option value="مسائي">مسائي</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('period')" class="mt-2" />
+                            </div>
                             <!-- حقل مدة التعاقد -->
                             <div class="mt-4">
                                 <x-input-label for="contract_duration" :value="__('مدة التعاقد')" />

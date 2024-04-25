@@ -139,36 +139,34 @@
                                                 <div class="col-md-12">
                                                     <div class="card mb-4 mb-md-0">
                                                         <div class="card-body">
-                                                            <p class="mb-4"><span
+                                                            {{-- <p class="mb-4"><span
                                                                     class="text-primary font-italic me-1">بيانات
                                                                     التعاقدات
                                                                     السابقة</span>
-                                                            </p>
+                                                            </p> --}}
                                                             <table class="table" style="margin:-1rem;
 ">
                                                                 <thead>
                                                                     <tr>
-                                                            
+
                                                                         <th scope="col">منتهية
                                                                         </th>
                                                                         <th scope="col">منتظرة
                                                                         </th>
+
                                                                         <th scope="col">
-                                                                            العقود الجارية
-                                                                        </th>
-                                                                        <th scope="col">
-                                                                            الطلبات
+                                                                            اجمالي الطلبات
                                                                         </th>
 
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                          
-                                                                        <td>1</td>
-                                                                        <td>2</td>
-                                                                        <td>3</td>
-                                                                        <td>3</td>
+
+                                                                        <td>{{ $activeReservations }}</td>
+                                                                        <td>{{ $inactiveReservations }}</td>
+                                                                        <td>{{ $activeReservations + $inactiveReservations }}
+                                                                        </td>
                                                                     </tr>
 
                                                                 </tbody>
@@ -196,16 +194,18 @@
 
     <style>
         .navbar-light .navbar-toggler-icon {
-    background-image: black !important;
-}
+            background-image: black !important;
+        }
     </style>
-// <Script>
-//     document.addEventListener("DOMContentLoaded", function() {
-//     var navbarTogglerIcon = document.querySelector('.navbar-light .navbar-toggler-icon');
-//     if (navbarTogglerIcon) {
-//         navbarTogglerIcon.style.backgroundImage = 'url("https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-3194221-2668357.png")';  
-//     }
-// });
+    //
+    <Script>
+        //     document.addEventListener("DOMContentLoaded", function() {
+        //     var navbarTogglerIcon = document.querySelector('.navbar-light .navbar-toggler-icon');
+        //     if (navbarTogglerIcon) {
+        //         navbarTogglerIcon.style.backgroundImage = 'url("https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-3194221-2668357.png")';  
+        //     }
+        // });
 
-// </Script>
+        // 
+    </Script>
 </x-layout.master>
