@@ -191,6 +191,14 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('prices.index') }}">
+                    <i class="bi bi-grid">
+                        <span> اسعار </span>
+                    </i>
+                </a>
+            </li>
+
         
             <!-- End Forms Nav -->
 
