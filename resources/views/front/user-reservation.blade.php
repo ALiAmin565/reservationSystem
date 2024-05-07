@@ -230,12 +230,12 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
-                            @php
+                                @php
                                 $price = $service->price;
-                                $discount = $service->discount;
+                                $discount = $service->discount ;
                                 $serviceCharge = $service->service_charge;
                                 $discountAmount = $price * ($discount / 100);
-                                $serviceChargeAmount = $price * ($serviceCharge / 100);
+                                $serviceChargeAmount =  ($serviceCharge / 100) * $price;
                                 $totalPrice = $price - $discountAmount + $serviceChargeAmount;
                             @endphp
                             <div class="mt-4">

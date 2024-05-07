@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\UserDetail;
 use App\Models\BankAccount;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class UserDetailController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request['total_price']);
         $validated = $request->validate([
             'city' => 'required|string|max:255',
             'street_name' => 'required|string|max:255',
@@ -37,6 +39,7 @@ class UserDetailController extends Controller
             'first_visit' => 'required|date',
             'payment_method' => 'required|string|max:255',
             'period' => 'required|string|max:255',
+            'total_price' => 'required|integer'
         ]);
 
         // Make Transaction ID  generate  6 digit random number
@@ -57,6 +60,7 @@ class UserDetailController extends Controller
         $userDetail->first_visit = $validated['first_visit'];
         $userDetail->payment_method = $validated['payment_method'];
         $userDetail->transaction_id = $validated['transaction_id'];
+        $userDetail->total_price = $request['total_price'];
         // Period
         $userDetail->period = $validated['period'];
         $userDetail->user_id =   Auth::User()->id;  //add user id here to make it belong to the logged in

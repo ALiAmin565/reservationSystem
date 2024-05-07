@@ -47,11 +47,18 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">نسبة الخدمة (%)</label>
+                                    <label class="col-sm-2 col-form-label">نسبة الضريبة (%)</label>
                                     <div class="col-sm-10">
                                         <input type="number" name="service_charge" class="form-control" step="0.01"
                                             placeholder="(e.g., 12.5 for 12.5%)" min="0" max="100"
                                             value="{{ $reservation->service_charge }}">
+                                    </div>
+                                </div>
+                                   <div class="row mb-3">
+                                    <label for="Sum" class="col-sm-2 col-form-label"> أجمالي السعر </label>
+                                    <div class="col-sm-10">
+                                        <input type="number" id="Sum" name="Sum" class="form-control"
+                                            step="0.01" value="" min="0" max="100" disabled>
                                     </div>
                                 </div>
 

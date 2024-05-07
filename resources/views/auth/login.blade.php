@@ -111,13 +111,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-9 offset-sm-3">
+                                <div class="col-sm-9 offset-sm-3" >
                                     {{-- <a class="forgetPass" href="ForgotPassword.html">نسيت كلمة المرور</a> --}}
-                                    <a class="forgetPass underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('نسيت كلمة المرور ؟') }}
-                                    </a>
-                                    <a class="regLink float-right" href="{{ route('register') }}">حساب جديد</a>
+                                   
+                                    <a class="regLink float-right text-green" style="    display: contents;" href="{{ route('register') }}">حساب جديد</a>
 
                                 </div>
                             </div>

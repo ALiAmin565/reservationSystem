@@ -22,8 +22,8 @@ class Price extends Model
     public static function data($request)
     {
         return [
-            'person_price' => $request->person_price,
-            'visit_price' => $request->visit_price,
+            'person_price' => 1,
+            'visit_price' =>1,
             'hour_price' => $request->hour_price,
         ];
     }

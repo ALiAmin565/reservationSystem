@@ -22,8 +22,8 @@ class PriceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'person_price' => ['required'],
-            'visit_price' => ['required'],
+            'person_price' => ['nullable'],
+            'visit_price' => ['nullable'],
             'hour_price' => ['required'],
         ];
     }

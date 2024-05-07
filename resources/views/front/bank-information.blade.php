@@ -40,19 +40,19 @@
     </div>
 
 
-    <div class="inner-header">
+    <div class="inner-header" >
         <div class="pb-5 text-center">
             <h1 class="font-bold fs-28 text-white"><span class="d-inline-block pb-2 px-5"> معلومات البنك </span>
             </h1>
         </div>
     </div>
 
-    <div class="container position-relative mb-4">
+    <div class="container position-relative mb-4" id="saad">
         <div class="row py-lg-4 py-3">
 
             <div class="col-lg-10 offset-lg-1">
-                <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a
-                        href="https://wa.me/+201101015643" target="_blank">ارسل هنا</a></p>
+               <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a
+                        href="https://wa.me/+{{ $data->whatsapp_number }}" target="_blank" style="color: black;">ارسل هنا</a></p>
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white "> معلومات البنك</div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -67,12 +67,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">اسم البنك</th>
-                                    <th scope="col">بيانات الحساب</th>
+                                    <th scope="col">رقم الحساب</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ $data->bank_name }}</td>
+                                    <td>{{ $data->account_name }}</td>
                                     <td>{{ $data->account_number }}</td>
                                 </tr>
                             </tbody>
@@ -101,21 +101,53 @@
 
                                     <td>
                                         @if ($checkTable == 'userService')
-                                            {{ Auth::user()->userServices->last()->reservation->id }}
+                                            {{ Auth::user()->userServices->last()->transaction_id }}
                                         @elseif($checkTable == 'reservation')
                                             {{ Auth::user()->userDetails->last()->transaction_id }}
                                         @endif
                                     </td>
                                     <td>
+                                        @php
+                                            $price = Auth::user()->userServices->last()->reservation->price;
+                                            $discount = Auth::user()->userServices->last()->reservation->discount;
+                                            $serviceCharge = Auth::user()->userServices->last()->reservation->service_charge;
+                                            $discountAmount = $price * ($discount / 100);
+                                            $serviceChargeAmount = ($serviceCharge / 100) * $price;
+                                            $totalPrice = $price - $discountAmount + $serviceChargeAmount;
+                                        @endphp
                                         @if ($checkTable == 'userService')
-                                            {{ Auth::user()->userServices->last()->reservation->price }}
+                                            {{  $totalPrice }}
                                         @elseif($checkTable == 'reservation')
-                                            احسبها نفسك
+                                            {{ Auth::user()->userDetails->last()->total_price }}
                                         @endif
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+     <!--<button onclick="printPage()" class="btn btn-primary">-->
+         
+     <!--    طباعة الفاتورة-->
+         
+     <!--    </button>-->
+<!--<script>-->
+<!--function printPage() {-->
+<!--    window.print();-->
+<!--}-->
+<!--</script>-->
+<button onclick="printSpecificSection()" class="btn btn-primary">
+    طباعة الفاتورة    </button>
+<script>
+function printSpecificSection() {
+    var section = document.getElementById('saad'); // احصل على العنصر بأكمله
+    var sectionContents = section.outerHTML; // احصل على HTML الخارجي بما في ذلك العنصر نفسه
+    var originalContents = document.body.innerHTML; // احفظ محتويات الصفحة الأصلية
+    document.body.innerHTML = sectionContents; // استبدل محتويات الصفحة بمحتويات القسم
+    window.print(); // أمر الطباعة
+    document.body.innerHTML = originalContents; // استعد محتويات الصفحة الأصلية
+}
+</script>
+
+
                     </div>
 
                 </div>

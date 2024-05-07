@@ -43,7 +43,7 @@
 
 
                                 <div class="row mb-3">
-                                    <label for="service_charge" class="col-sm-2 col-form-label">نسبة الخدمة (%)</label>
+                                    <label for="service_charge" class="col-sm-2 col-form-label">نسبة الضريبة (%)</label>
                                     <div class="col-sm-10">
                                         <input type="number" id="service_charge" name="service_charge" class="form-control"
                                             step="0.01" placeholder="(e.g., 12.5 for 12.5%)" min="0"

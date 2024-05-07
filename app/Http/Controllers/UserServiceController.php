@@ -27,7 +27,8 @@ class UserServiceController extends Controller
             // Add more validation rules as needed
         ]);
         // Create a transaction id and pass it into userService 
-        $validated['transaction_id'] = rand(100000, 999999);
+        $validatedData['transaction_id'] = rand(100000, 999999);
+     
         // Store the data in the database
         $UserService = UserService::create($validatedData);
 

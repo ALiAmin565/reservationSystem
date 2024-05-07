@@ -49,7 +49,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="https://smart.27lashabab.com/" class="logo d-flex align-items-center">
                 <img src="https://shining.ajeerco.com/wp-content/uploads/2023/10/cropped-logo6.png" alt="">
                 <span class="d-none d-lg-block">نظافة ولمعة</span>
             </a>

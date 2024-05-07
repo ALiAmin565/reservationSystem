@@ -120,7 +120,7 @@
                             <div class="mt-4">
                                 <x-input-label for="service_count" :value="__('عدد مقدمي الخدمة')" />
                                 <select id="service_count" class="block mt-1 w-full form-control col-sm-9"
-                                    name="service_count" required>
+                                    name="service_count" required onchange="updatePrice()">
                                     <option value="">اختر عدد المقدمين</option>
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -128,12 +128,23 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('service_count')" class="mt-2" />
                             </div>
-
+ <!-- حقل مدة التعاقد -->
+                            <div class="mt-4">
+                                <x-input-label for="contract_duration" :value="__('مدة التعاقد')" />
+                                <select id="contract_duration" class="block mt-1 w-full form-control col-sm-9"
+                                    name="contract_duration" required onchange="updatePrice()">
+                                    <option value="">اختر مدة التعاقد</option>
+                                    @for ($i = 1; $i <= 12; $i++)
+                                        <option value="{{ $i }}">{{ $i }} شهور</option>
+                                    @endfor
+                                </select>
+                                <x-input-error :messages="$errors->get('contract_duration')" class="mt-2" />
+                            </div>
                             <!-- حقل عدد الزيارات الأسبوعية -->
                             <div class="mt-4">
                                 <x-input-label for="weekly_visits" :value="__('عدد الزيارات الأسبوعية')" />
                                 <select id="weekly_visits" class="block mt-1 w-full form-control col-sm-9"
-                                    name="weekly_visits" required>
+                                    name="weekly_visits" required onchange="updatePrice()" >
                                     <option value="">اختر عدد الزيارات</option>
                                     @for ($i = 1; $i <= 6; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -145,7 +156,7 @@
                             <div class="mt-4">
                                 <x-input-label for="hours_count" :value="__('عدد الساعات')" />
                                 <select id="hours_count" class="block mt-1 w-full form-control col-sm-9"
-                                    name="hours_count" required>
+                                    name="hours_count" required onchange="updatePrice()">
                                     <option value="">اختر عدد الساعات </option>
                                     @foreach ($times as $time)
                                         <option value="{{ $time->time }}">{{ $time->time }}</option>
@@ -157,25 +168,14 @@
                             <div class="mt-4">
                                 <x-input-label for="period" :value="__('موعد الزيارة')" />
                                 <select id="period" class="block mt-1 w-full form-control col-sm-9" name="period"
-                                    required>
+                                    required onchange="updatePrice()">
                                     <option value=""> اختر موعد الزيارة </option>
                                     <option value="صباحي">صباحي</option>
                                     <option value="مسائي">مسائي</option>
                                 </select>
                                 <x-input-error :messages="$errors->get('period')" class="mt-2" />
                             </div>
-                            <!-- حقل مدة التعاقد -->
-                            <div class="mt-4">
-                                <x-input-label for="contract_duration" :value="__('مدة التعاقد')" />
-                                <select id="contract_duration" class="block mt-1 w-full form-control col-sm-9"
-                                    name="contract_duration" required>
-                                    <option value="">اختر مدة التعاقد</option>
-                                    @for ($i = 1; $i <= 12; $i++)
-                                        <option value="{{ $i }}">{{ $i }} شهور</option>
-                                    @endfor
-                                </select>
-                                <x-input-error :messages="$errors->get('contract_duration')" class="mt-2" />
-                            </div>
+                           
 
                             <!-- حقل تاريخ الزيارة الأولى -->
                             <div class="mt-4">
@@ -195,6 +195,14 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
+                               <!--<div id="totalPrice">Total Price: 0</div>-->
+                                                            <div class="mt-4">
+    <div  class="mb-2">
+    <button class="btn btn-success" id="totalPrice">اجمالي السعر : 0 </button></div>
+</div>
+
+                            {{-- make input disable to send total price  --}}
+                            <input type="hidden" name="total_price" id="total_price" value="0">
                             <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
                                     <x-primary-button class="ms-4 btn bg-brand text-white btn-block">
@@ -236,4 +244,27 @@
             }
         });
     </script> <!-- inner header -->
+    <script>
+        function updatePrice() {
+            var servicePrices = @json($price->person_price);
+            var visitPrices = @json($price->visit_price);
+            var timePrices = @json($price->hour_price);
+            // console.log( servicePrices, visitPrices, timePrices);
+            var serviceCount = $('#service_count').val();
+            var visitCount = $('#weekly_visits').val();
+            var timeCount = $('#hours_count').val();
+            var duration = $('#contract_duration').val();
+            // According duration calculate the price if month mutliply by 4 if 2 months multiply by 8 and so on
+            var numberWeeks = duration * 4;
+            var servicePrice = servicePrices * serviceCount;
+            var visitPrice = visitPrices * visitCount;
+
+
+            var timePrice = timePrices * timeCount;
+            var totalPrice = timePrice * serviceCount * (visitCount * numberWeeks);
+            $('#totalPrice').text('Total Price: ' + totalPrice);
+            // add total price to hidden input
+            $('#total_price').val(totalPrice);
+        }
+    </script>
 </x-layout.master>

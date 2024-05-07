@@ -196,6 +196,10 @@
         .navbar-light .navbar-toggler-icon {
             background-image: black !important;
         }
+        .navbar{
+                box-shadow: none !important;
+
+        }
     </style>
     //
     <Script>

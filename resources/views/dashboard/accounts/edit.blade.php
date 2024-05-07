@@ -29,7 +29,7 @@
 
                                 <!-- Form Fields, initially disabled if $account is set -->
                                 <div class="row mb-3">
-                                    <label for="account_name" class="col-sm-2 col-form-label">اسم الحساب البنكي</label>
+                                    <label for="account_name" class="col-sm-2 col-form-label"> اسم البنك</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="account_name" class="form-control" id="account_name"
                                             value="{{ $account->account_name ?? '' }}" required
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="row mb-3" style="display:none">
                                     <label for="bank_name" class="col-sm-2 col-form-label">الرقم البنكي</label>
                                     <div class="col-sm-10">
                                         <input type="text" name="bank_name" class="form-control" id="bank_name"

@@ -1,16 +1,17 @@
 <?php
 
+use App\Models\Price;
 use App\Models\UserDetail;
 use App\Models\BankAccount;
 use App\Models\UserService;
 use App\Models\DeterminedTime;
 use App\Models\ServiceManReservation;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\BankAccountController;
-use App\Http\Controllers\PriceController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
@@ -72,7 +73,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/design-plan", function () {
         $times = DeterminedTime::all();
         $user = auth()->user();
-        return view('front.design-plan', compact('times', 'user'));
+        $price=Price::get()->first();    
+        return view('front.design-plan', compact('times', 'user','price'));
     })->name('design-plan');
     Route::get("/my-profile", function () {
         $user = auth()->user();
