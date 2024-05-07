@@ -89,23 +89,24 @@
                                     </li>
                                 </ul>
                             </div>
-                      
-                            {{-- <span style="width: 2px;background: #b61018;height: 30px;"
-                                class="d-md-inline d-none mx-2"></span> --}}
-                                <div class="hours-filter mb-4 mb-md-0">
+
+                            <div class="hours-filter mb-4 mb-md-0">
                                 <button type="button" class="mx-2 px-3 HourFilter" value="4"
-                                    onclick="GetPackagesForPackage(4)" id="Hour_4">4 ساعات</button>
+                                    onclick="GetPackagesForPackage(4)" id="Hour_4"> <a
+                                        href="{{ route('services.index', ['time' => '4', 'period' => $period]) }}">4
+                                        ساعات</a></button>
                                 <div>
                                 </div>
                             </div>
-                            {{-- <span style="width: 2px;background: #b61018;height: 30px;"
-                            class="d-md-inline d-none mx-2"></span> --}}
+
                             <div class="hours-filter mb-4 mb-md-0">
-                            <button type="button" class="mx-2 px-3 HourFilter" value="8"
-                                onclick="GetPackagesForPackage(8)" id="Hour_8">8 ساعات</button>
-                            <div>
+                                <button type="button" class="mx-2 px-3 HourFilter" value="8"
+                                    onclick="GetPackagesForPackage(8)" id="Hour_8"><a
+                                    href="{{ route('services.index', ['time' => '8', 'period' => $period]) }}">8
+                                    ساعات</a></button> </button>
+                                <div>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div id="ResultDiv">
                             <div class="container">
@@ -126,7 +127,7 @@
                                                                     <!--<span>زيارة {{ $service->number_of_visits }} ساعات-->
                                                                     <!--    {{ $service->period->period }} بـ-->
                                                                     <!--    {{ $service->price }} ريال </span>-->
-                                                                <span>{{$service->service_name}}</span>
+                                                                    <span>{{ $service->service_name }}</span>
                                                                 </a>
                                                             </h5>
                                                         </div>
@@ -140,24 +141,24 @@
                                                                         <div class="align-items-center row">
                                                                             <div
                                                                                 class="border-mg-left col-md-5 mb-3 mb-md-0 pb-2 pb-md-0">
-                                                   @php
+                                                                                @php
 
-                                                                                $price = $service->price;
-                                                                                $discount = $service->discount;
-                                                                                $serviceCharge =
-                                                                                    $service->service_charge;
-                                                                                $discountAmount =
-                                                                                    $price * ($discount / 100);
-                                                                                $serviceChargeAmount =
-                                                                                    ($serviceCharge / 100) * $price;
-                                                                                $finalPrice =
-                                                                                    $price -
-                                                                                    $discountAmount +
-                                                                                    $serviceChargeAmount;
-                                                                                $finalPriceWithoutDiscount =
-                                                                                    $price + $serviceChargeAmount;
-
-                                                                            @endphp                             <div class="fs-20 fs-lg-36 text-brand">
+                                                                                    $price = $service->price;
+                                                                                    $discount = $service->discount;
+                                                                                    $serviceCharge =
+                                                                                        $service->service_charge;
+                                                                                    $discountAmount =
+                                                                                        $price * ($discount / 100);
+                                                                                    $serviceChargeAmount =
+                                                                                        ($serviceCharge / 100) * $price;
+                                                                                    $finalPrice =
+                                                                                        $price -
+                                                                                        $discountAmount +
+                                                                                        $serviceChargeAmount;
+                                                                                    $finalPriceWithoutDiscount =
+                                                                                        $price + $serviceChargeAmount;
+                                                                                @endphp <div
+                                                                                    class="fs-20 fs-lg-36 text-brand">
                                                                                     زيارة
                                                                                     4
                                                                                     ساعات
@@ -167,7 +168,7 @@
 
                                                                             </div>
 
-                                                                             
+
                                                                             <div class="col-md-7">
                                                                                 <div
                                                                                     class="text-808080 fs-20 font-weight-normal mb-1">
@@ -179,12 +180,14 @@
                                                                                     {{ $finalPrice }} ريال
                                                                                 </div>
                                                                                 <div class="row">
-                                                                                    {{-- <div
-                                                                                        class="col-6 fs-14 text-808080">
-                                                                                        الجنسية : أوغندا </div> --}}
                                                                                     <div
                                                                                         class="col-6 fs-14 text-808080">
-                                                                                   {{ $service->number_of_visits }}
+                                                                                        الجنسية :
+                                                                                        {{ $service->nationalityData->name }}
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="col-6 fs-14 text-808080">
+                                                                                        {{ $service->number_of_visits }}
 
                                                                                         زيارة اسبوعيا </div>
                                                                                     <div
