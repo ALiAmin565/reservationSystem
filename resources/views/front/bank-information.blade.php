@@ -40,7 +40,7 @@
     </div>
 
 
-    <div class="inner-header" >
+    <div class="inner-header">
         <div class="pb-5 text-center">
             <h1 class="font-bold fs-28 text-white"><span class="d-inline-block pb-2 px-5"> معلومات البنك </span>
             </h1>
@@ -51,8 +51,9 @@
         <div class="row py-lg-4 py-3">
 
             <div class="col-lg-10 offset-lg-1">
-               <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a
-                        href="https://wa.me/+{{ $data->whatsapp_number }}" target="_blank" style="color: black;">ارسل هنا</a></p>
+                <p>اذا كنت اخترت التحويل البنكي يرجي ارسال صورة التحويل عبر الواتساب <a
+                        href="https://wa.me/+{{ $data->whatsapp_number }}" target="_blank" style="color: black;">ارسل
+                        هنا</a></p>
                 <div class="bg-brand fs-24 my-4 p-1 rounded-32 text-center text-white "> معلومات البنك</div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
@@ -107,16 +108,18 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @php
-                                            $price = Auth::user()->userServices->last()->reservation->price;
-                                            $discount = Auth::user()->userServices->last()->reservation->discount;
-                                            $serviceCharge = Auth::user()->userServices->last()->reservation->service_charge;
-                                            $discountAmount = $price * ($discount / 100);
-                                            $serviceChargeAmount = ($serviceCharge / 100) * $price;
-                                            $totalPrice = $price - $discountAmount + $serviceChargeAmount;
-                                        @endphp
+
                                         @if ($checkTable == 'userService')
-                                            {{  $totalPrice }}
+                                            @php
+                                                $price = Auth::user()->userServices->last()->reservation->price;
+                                                $discount = Auth::user()->userServices->last()->reservation->discount;
+                                                $serviceCharge = Auth::user()->userServices->last()->reservation
+                                                    ->service_charge;
+                                                $discountAmount = $price * ($discount / 100);
+                                                $serviceChargeAmount = ($serviceCharge / 100) * $price;
+                                                $totalPrice = $price - $discountAmount + $serviceChargeAmount;
+                                            @endphp
+                                            {{ $totalPrice }}
                                         @elseif($checkTable == 'reservation')
                                             {{ Auth::user()->userDetails->last()->total_price }}
                                         @endif
@@ -124,28 +127,37 @@
                                 </tr>
                             </tbody>
                         </table>
-     <!--<button onclick="printPage()" class="btn btn-primary">-->
-         
-     <!--    طباعة الفاتورة-->
-         
-     <!--    </button>-->
-<!--<script>-->
-<!--function printPage() {-->
-<!--    window.print();-->
-<!--}-->
-<!--</script>-->
-<button onclick="printSpecificSection()" class="btn btn-primary">
-    طباعة الفاتورة    </button>
-<script>
-function printSpecificSection() {
-    var section = document.getElementById('saad'); // احصل على العنصر بأكمله
-    var sectionContents = section.outerHTML; // احصل على HTML الخارجي بما في ذلك العنصر نفسه
-    var originalContents = document.body.innerHTML; // احفظ محتويات الصفحة الأصلية
-    document.body.innerHTML = sectionContents; // استبدل محتويات الصفحة بمحتويات القسم
-    window.print(); // أمر الطباعة
-    document.body.innerHTML = originalContents; // استعد محتويات الصفحة الأصلية
-}
-</script>
+                        <!--<button onclick="printPage()" class="btn btn-primary">-->
+
+                        <!--    طباعة الفاتورة-->
+
+                        <!--    </button>-->
+                        <!--<script>
+                            -- >
+                            <
+                            !-- function printPage() {
+                                -- >
+                                <
+                                !--window.print();
+                                -- >
+                                <
+                                !--
+                            }-- >
+                            <
+                            !--
+                        </script>-->
+                        <button onclick="printSpecificSection()" class="btn btn-primary">
+                            طباعة الفاتورة </button>
+                        <script>
+                            function printSpecificSection() {
+                                var section = document.getElementById('saad'); // احصل على العنصر بأكمله
+                                var sectionContents = section.outerHTML; // احصل على HTML الخارجي بما في ذلك العنصر نفسه
+                                var originalContents = document.body.innerHTML; // احفظ محتويات الصفحة الأصلية
+                                document.body.innerHTML = sectionContents; // استبدل محتويات الصفحة بمحتويات القسم
+                                window.print(); // أمر الطباعة
+                                document.body.innerHTML = originalContents; // استعد محتويات الصفحة الأصلية
+                            }
+                        </script>
 
 
                     </div>

@@ -6,6 +6,7 @@ use App\Models\Period;
 use App\Models\UserService;
 use Illuminate\Http\Request;
 use App\Models\DeterminedTime;
+use App\Models\Nationality;
 use App\Models\ServiceManReservation;
 
 class ServiceManReservationController extends Controller
@@ -25,7 +26,8 @@ class ServiceManReservationController extends Controller
     {
         $periods = Period::all();
         $times = DeterminedTime::all();
-        return view('dashboard.package.create', compact('periods', 'times'));
+        $nationalities = Nationality::all();
+        return view('dashboard.package.create', compact('periods', 'times', 'nationalities'));
     }
     /**
      * Store a newly created resource in storage.
@@ -67,7 +69,8 @@ class ServiceManReservationController extends Controller
         $reservation = ServiceManReservation::findOrFail($id);
         $periods = Period::all();
         $times = DeterminedTime::all();
-        return view('dashboard.package.edit', compact('reservation', 'periods', 'times'));
+        $nationalities = Nationality::all();
+        return view('dashboard.package.edit', compact('reservation', 'periods', 'times','nationalities'));
     }
 
     /**

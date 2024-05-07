@@ -19,6 +19,7 @@ class ServiceReservationController extends Controller
     public function show(Request $request)
     {
         $service = ServiceManReservation::find($request->service_id);
+        
         return view('front.user-reservation', compact('service'));
     }
 }

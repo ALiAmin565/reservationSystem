@@ -28,4 +28,9 @@ class Nationality extends Model
             'name' => $request->name
         ];
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(ServiceManReservation::class);
+    }
 }

@@ -100,6 +100,18 @@
                                 </div>
 
                                 <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">الجنسية </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" name="nationality" required>
+                                            @foreach ($nationalities as $nationality)
+                                                <option value="{{ $nationality->id }}">{{ $nationality->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">الفترة</label>
                                     <div class="col-sm-10">
                                         <select class="form-select" name="period_id" required>

@@ -39,7 +39,8 @@ class UserDetailController extends Controller
             'first_visit' => 'required|date',
             'payment_method' => 'required|string|max:255',
             'period' => 'required|string|max:255',
-            'total_price' => 'required|integer'
+            'total_price' => 'required|integer',
+            'nationality' =>'required|string|max:255',
         ]);
 
         // Make Transaction ID  generate  6 digit random number
@@ -64,7 +65,7 @@ class UserDetailController extends Controller
         // Period
         $userDetail->period = $validated['period'];
         $userDetail->user_id =   Auth::User()->id;  //add user id here to make it belong to the logged in
-
+        $userDetail->nationality = $request['nationality'];
         $userDetail->save();
 
         // return to route in  web.php with message

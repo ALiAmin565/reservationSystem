@@ -16,6 +16,7 @@ use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
+use App\Models\Nationality;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,8 @@ Route::middleware('auth')->group(function () {
         $times = DeterminedTime::all();
         $user = auth()->user();
         $price=Price::get()->first();    
-        return view('front.design-plan', compact('times', 'user','price'));
+        $nationalities= Nationality::all();
+        return view('front.design-plan', compact('times', 'user','price','nationalities'));
     })->name('design-plan');
     Route::get("/my-profile", function () {
         $user = auth()->user();

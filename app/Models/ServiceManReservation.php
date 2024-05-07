@@ -21,7 +21,8 @@ class ServiceManReservation extends Model
         'time_id',
         'active',
         'number_days',
-        'service_charge'
+        'service_charge',
+        'nationality'
     ];
 
     public function period()
@@ -32,5 +33,11 @@ class ServiceManReservation extends Model
     public function time()
     {
         return $this->belongsTo(DeterminedTime::class, 'time_id');
+    }
+
+    // Nationality
+    public function nationalityData()
+    {
+        return $this->belongsTo(Nationality::class, 'nationality');
     }
 }

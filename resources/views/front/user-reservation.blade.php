@@ -134,6 +134,16 @@
                                     type="text" name="num_service" :value="$service->number_of_man_services" disabled />
                                 <x-input-error :messages="$errors->get('num_service')" class="mt-2" />
                             </div>
+                            <!-- حقل  الجنسية -->
+                            <div class="mt-4">
+                                <x-input-label for="nationality" :value="__(' الجنسيات')" />
+                                <select id="nationality" class="block mt-1 w-full form-control col-sm-9"
+                                    name="nationality" required disabled>
+                                    <option value="{{ $service->nationality }}">{{ $service->nationalityData->name }}
+                                    </option>
+                                </select>
+                                <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
+                            </div>
                             <div class="mt-4">
                                 <x-input-label for="num_visit" :value="__(' عدد الزيارات ')" />
                                 <x-text-input id="num_visit" class="block mt-1 w-full form-control col-sm-9"
@@ -230,12 +240,12 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
-                                @php
+                            @php
                                 $price = $service->price;
-                                $discount = $service->discount ;
+                                $discount = $service->discount;
                                 $serviceCharge = $service->service_charge;
                                 $discountAmount = $price * ($discount / 100);
-                                $serviceChargeAmount =  ($serviceCharge / 100) * $price;
+                                $serviceChargeAmount = ($serviceCharge / 100) * $price;
                                 $totalPrice = $price - $discountAmount + $serviceChargeAmount;
                             @endphp
                             <div class="mt-4">

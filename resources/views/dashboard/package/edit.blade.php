@@ -54,7 +54,7 @@
                                             value="{{ $reservation->service_charge }}">
                                     </div>
                                 </div>
-                                   <div class="row mb-3">
+                                <div class="row mb-3">
                                     <label for="Sum" class="col-sm-2 col-form-label"> أجمالي السعر </label>
                                     <div class="col-sm-10">
                                         <input type="number" id="Sum" name="Sum" class="form-control"
@@ -89,6 +89,19 @@
                                     <div class="col-sm-10">
                                         <input type="number" name="number_of_man_services" class="form-control"
                                             value="{{ $reservation->number_of_man_services }}">
+                                    </div>
+                                </div>
+                                {{-- @dd($reservation->nationality); --}}
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">الجنسية </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-select" name="nationality" required>
+                                            {{-- First fixed value comming from database --}}
+                                            <option value="{{ $reservation->nationality }}">{{ $reservation->nationalityData->name }}</option>
+                                            @foreach ($nationalities as $nationality)
+                                                <option value="{{ $nationality->id }}">{{ $nationality->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

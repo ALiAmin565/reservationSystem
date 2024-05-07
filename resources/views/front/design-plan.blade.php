@@ -128,7 +128,19 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('service_count')" class="mt-2" />
                             </div>
- <!-- حقل مدة التعاقد -->
+                            <!-- حقل  الجنسية -->
+                            <div class="mt-4">
+                                <x-input-label for="nationality" :value="__(' الجنسيات')" />
+                                <select id="nationality" class="block mt-1 w-full form-control col-sm-9"
+                                    name="nationality" required>
+                                    <option value="">اختر الجنسية </option>
+                                    @foreach ($nationalities as $nationality)
+                                        <option value="{{ $nationality->name }}">{{ $nationality->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
+                            </div>
+                            <!-- حقل مدة التعاقد -->
                             <div class="mt-4">
                                 <x-input-label for="contract_duration" :value="__('مدة التعاقد')" />
                                 <select id="contract_duration" class="block mt-1 w-full form-control col-sm-9"
@@ -144,7 +156,7 @@
                             <div class="mt-4">
                                 <x-input-label for="weekly_visits" :value="__('عدد الزيارات الأسبوعية')" />
                                 <select id="weekly_visits" class="block mt-1 w-full form-control col-sm-9"
-                                    name="weekly_visits" required onchange="updatePrice()" >
+                                    name="weekly_visits" required onchange="updatePrice()">
                                     <option value="">اختر عدد الزيارات</option>
                                     @for ($i = 1; $i <= 6; $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
@@ -175,7 +187,7 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('period')" class="mt-2" />
                             </div>
-                           
+
 
                             <!-- حقل تاريخ الزيارة الأولى -->
                             <div class="mt-4">
@@ -195,11 +207,12 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('payment_method')" class="mt-2" />
                             </div>
-                               <!--<div id="totalPrice">Total Price: 0</div>-->
-                                                            <div class="mt-4">
-    <div  class="mb-2">
-    <button class="btn btn-success" id="totalPrice">اجمالي السعر : 0 </button></div>
-</div>
+                            <!--<div id="totalPrice">Total Price: 0</div>-->
+                            <div class="mt-4">
+                                <div class="mb-2">
+                                    <button class="btn btn-success" id="totalPrice">اجمالي السعر : 0 </button>
+                                </div>
+                            </div>
 
                             {{-- make input disable to send total price  --}}
                             <input type="hidden" name="total_price" id="total_price" value="0">
