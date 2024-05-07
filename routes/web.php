@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
@@ -56,6 +57,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('reservations-admin', ServiceManReservationController::class);
     Route::resource('accounts', BankAccountController::class);
     Route::resource('prices', PriceController::class);
+    Route::resource('nationality', NationalityController::class);
+
 });
 
 

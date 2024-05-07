@@ -199,6 +199,14 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('nationality.index') }}">
+                    <i class="bi bi-grid">
+                        <span> الجنسيات </span>
+                    </i>
+                </a>
+            </li>
+
         
             <!-- End Forms Nav -->
 
