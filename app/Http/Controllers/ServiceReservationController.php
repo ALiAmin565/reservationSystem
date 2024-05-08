@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\city;
 use Illuminate\Http\Request;
 use App\Models\ServiceManReservation;
 
@@ -28,7 +29,7 @@ class ServiceReservationController extends Controller
     public function show(Request $request)
     {
         $service = ServiceManReservation::find($request->service_id);
-
-        return view('front.user-reservation', compact('service'));
+        $cities = city::all();  
+        return view('front.user-reservation', compact('service','cities'));
     }
 }

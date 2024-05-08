@@ -207,6 +207,22 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('worker.index') }}">
+                    <i class="bi bi-grid">
+                        <span> العمال </span>
+                    </i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('city.index') }}">
+                    <i class="bi bi-grid">
+                        <span> المدن </span>
+                    </i>
+                </a>
+            </li>
+
         
             <!-- End Forms Nav -->
 

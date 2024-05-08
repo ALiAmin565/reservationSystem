@@ -91,19 +91,23 @@
                             </div>
 
                             <div class="hours-filter mb-4 mb-md-0">
-                                <button type="button" class="mx-2 px-3 HourFilter" value="4"
-                                    onclick="GetPackagesForPackage(4)" id="Hour_4"> <a
-                                        href="{{ route('services.index', ['time' => '4', 'period' => $period]) }}">4
-                                        ساعات</a></button>
+                                <a href="{{ route('services.index', ['time' => '4', 'period' => $period]) }}">
+                                    <button type="button"
+                                        class="mx-2 px-3 HourFilter {{ $time === '4' ? 'active' : '' }} " value="4"
+                                        onclick="GetPackagesForPackage(4)" id="Hour_4" style=" cursor: pointer;"> 4
+                                        ساعات</button>
+                                </a>
                                 <div>
                                 </div>
                             </div>
 
                             <div class="hours-filter mb-4 mb-md-0">
-                                <button type="button" class="mx-2 px-3 HourFilter" value="8"
-                                    onclick="GetPackagesForPackage(8)" id="Hour_8"><a
-                                    href="{{ route('services.index', ['time' => '8', 'period' => $period]) }}">8
-                                    ساعات</a></button> </button>
+                                <a href="{{ route('services.index', ['time' => '8', 'period' => $period]) }}">
+                                    <button type="button"
+                                        class="mx-2 px-3 HourFilter {{ $time === '8' ? 'active' : '' }} " value="8"
+                                        onclick="GetPackagesForPackage(8)" id="Hour_8" style=" cursor: pointer;">8
+                                        ساعات</button>
+                                </a>
                                 <div>
                                 </div>
                             </div>

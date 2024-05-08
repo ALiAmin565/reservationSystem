@@ -66,12 +66,24 @@
                             @csrf
                             {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" /> --}}
                             <!-- حقل المدينة -->
-                            <div class="mt-4">
+                            {{-- <div class="mt-4">
                                 <x-input-label for="city" :value="__('المدينة والحي')" />
                                 <x-text-input id="city" class="block mt-1 w-full form-control col-sm-9"
                                     type="text" name="city" :value="old('city')" required autofocus />
                                 <x-input-error :messages="$errors->get('city')" class="mt-2" />
-                            </div>
+                            </div> --}}
+                            <div class="mt-4">
+                                <div class="mt-4">
+                                    <x-input-label for="city" :value="__(' المدن')" />
+                                    <select id="city" class="block mt-1 w-full form-control col-sm-9"
+                                        name="city" required>
+                                        <option value="">اختر المدينة </option>
+                                        @foreach ($cities as $city)
+                                            <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <x-input-error :messages="$errors->get('city')" class="mt-2" />
+                                </div>
 
                             <!-- حقل اسم الشارع -->
                             <div class="mt-4">

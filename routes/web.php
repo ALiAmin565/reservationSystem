@@ -3,11 +3,14 @@
 use App\Models\Price;
 use App\Models\UserDetail;
 use App\Models\BankAccount;
+use App\Models\Nationality;
 use App\Models\UserService;
 use App\Models\DeterminedTime;
 use App\Models\ServiceManReservation;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserDetailController;
@@ -16,7 +19,7 @@ use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\ServiceReservationController;
 use App\Http\Controllers\ServiceManReservationController;
-use App\Models\Nationality;
+use App\Models\city;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +62,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('accounts', BankAccountController::class);
     Route::resource('prices', PriceController::class);
     Route::resource('nationality', NationalityController::class);
+    Route::resource('worker', WorkerController::class);
+    Route::resource('city', CityController::class);
+
+
 
 });
 
@@ -79,7 +86,8 @@ Route::middleware('auth')->group(function () {
         $user = auth()->user();
         $price=Price::get()->first();    
         $nationalities= Nationality::all();
-        return view('front.design-plan', compact('times', 'user','price','nationalities'));
+        $cities = city::all();  
+        return view('front.design-plan', compact('times', 'user','price','nationalities','cities'));
     })->name('design-plan');
     Route::get("/my-profile", function () {
         $user = auth()->user();
