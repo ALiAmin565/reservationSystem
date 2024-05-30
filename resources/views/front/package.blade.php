@@ -51,11 +51,16 @@
         <div class="row py-lg-4 py-3">
             <div class="col-lg-12 col-md-12 pb-4">
                 <div class="bg-brand fs-24 mb-4 p-1 text-center text-white">الباقات</div>
+                @if (session('error'))
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-12 text-md-left text-center">
                         <div
                             class="align-items-center align-items-lg-center align-items-md-start big-title-with-line d-flex flex-column flex-md-row justify-content-center justify-content-md-between mt-5">
-                            <span class="pr-0 pr-md-4">الباقات المميزة</span>
+                            <span class="pr-0 pr-md-4">باقات العاملات المنزلية بالساعة</span>
                             <div class="align-items-center d-flex flex-column flex-md-row">
                                 <span class="bg-white fs-18 p-2" style="z-index: 2;">أو</span>
                                 <a href="{{ route('design-plan') }}" class="btn btn-success btn-lg text-white"
@@ -255,6 +260,75 @@
                                                     <!--<img src="Content/img/more-arrow.png" />-->
                                                 </a>
                                             </div>
+                                            <div class="container-fluid mt-5" style="padding-left: 0px;
+    padding-right: 0px;">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-lg-6 col-md-8 col-12">
+                                                        <div class="card">
+                                                            <h3 style="    text-align: center;
+    color: #28a745;
+    margin-top: 1rem;
+">
+                                                                
+                                                                طلب خدمة خاصة
+                                                            </h3>
+                                                            <!--<div class="card-header">-->
+                                                            <!--    Contact Form-->
+                                                            <!--</div>-->
+                                                            <div class="card-body">
+                                                                <form action="{{ route('send.email') }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    <div class="form-group">
+                                                                        <label for="name">الاسم</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="name" name="name" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">البريد الالكتروني</label>
+                                                                        <input type="email" class="form-control"
+                                                                            id="email" name="email" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="mobile">رقم الهاتف</label>
+                                                                        <input type="tel" class="form-control"
+                                                                            id="mobile" name="mobile" required>
+                                                                    </div>
+                                                                    <div class="mt-4">
+                                                                        <x-input-label for="city"
+                                                                            :value="__(' المدينة')" />
+                                                                        <select id="city"
+                                                                            class="block mt-1 w-full form-control col-sm-9"
+                                                                            name="city" required>
+                                                                            <option value="">اختر المدينة
+                                                                            </option>
+                                                                            @foreach ($cities as $city)
+                                                                                <option value="{{ $city->name }}">
+                                                                                    {{ $city->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <x-input-error :messages="$errors->get('city')"
+                                                                            class="mt-2" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="record_date">التاريخ</label>
+                                                                        <input type="date" class="form-control"
+                                                                            id="record_date" name="date"
+                                                                            required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="message">وصف الخدمة المطلوبة</label>
+                                                                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                                                    </div>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">ارسال</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

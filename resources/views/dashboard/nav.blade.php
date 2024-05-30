@@ -41,6 +41,20 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+    @media (max-width: 1199px) {
+    #main {
+        padding: 0 !important;
+        width: fit-content;   
+    }
+    .toggle-sidebar .sidebar{
+        display: block;
+    }
+    .sidebar {
+        display: none;
+    }
+    }
+    </style>
 
 </head>
 
@@ -142,18 +156,24 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('dashboard-admin') }}">
                     <i class="bi bi-grid"></i>
-                    <span>لوحة التحكم</span>
+                    <span>الادمن</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('reservations.fetch', 'active') }}">
+                <a class="nav-link collapsed" href="{{ route('dashboard-user') }}">
+                    <i class="bi bi-grid"></i>
+                    <span>المستخدم</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('reservations.fetch', '1') }}">
                     <i class="bi bi-grid">
                         <span>الحجوزات </span>
                     </i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('reservations.fetch', 'inactive') }}">
+                <a class="nav-link collapsed" href="{{ route('reservations.fetch', '0') }}">
                     <i class="bi bi-grid">
                         <span> الحجوزات المنتظرة</span>
                     </i>

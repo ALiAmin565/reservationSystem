@@ -7,13 +7,26 @@ use App\Models\UserService;
 use Illuminate\Http\Request;
 use App\Models\ServiceManReservation;
 use App\Models\UserDetail;
+use App\Models\worker;
+use Illuminate\Support\Facades\Auth;
+use Termwind\Components\Dd;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function indexUsers()
     {
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
+        // $admins = User::where('role', 'admin')->get();
+        
         return view('dashboard.user.index', compact('users'));
+    }
+
+    public function indexAdmins()
+    {
+        // $users = User::where('role', 'user')->get();
+        $users = User::where('role', 'admin')->get();
+        
+        return view('dashboard.user.index', compact( 'users'));
     }
 
     public function edit(User $user)
@@ -53,13 +66,15 @@ class DashboardController extends Controller
 
     public function fetchReservations($status)
     {
-        $isActive = $status === 'active'; // Check if the status parameter is 'active'
+        $isActive = $status === '1'; // Check if the status parameter is 'active'
 
-        $userServices = UserService::with(['user', 'reservation' => function ($query) use ($isActive) {
-            $query->where('active', $isActive);
-        }])->whereHas('reservation', function ($query) use ($isActive) {
-            $query->where('active', $isActive);
-        })->get();
+        // $userServices = UserService::with(['user', 'reservation' => function ($query) use ($isActive) {
+        //     $query->where('active', $isActive);
+        // }])->whereHas('reservation', function ($query) use ($isActive) {
+        //     $query->where('active', $isActive);
+        // })->get();
+        // Use Record on User Service active 
+        $userServices = UserService::with('user','reservation')->where('active', $isActive)->get();
 
         return view('dashboard.reservation.index', compact('userServices')); // Pass the data to the view
     }
@@ -73,17 +88,98 @@ class DashboardController extends Controller
 
     public function toggleActive(ServiceManReservation $reservation)
     {
-        $reservation->active = !$reservation->active; // Toggle the active state
-        $reservation->save();
+        $getNumberOfPersons = worker::find(1);
+        // dd($getNumberOfPersons->persons_number_evening);
+        if ($reservation->period->period == 'صباحي') {
+            // First Number of Reservation
+            $getNumberOfPersonsReservation = ServiceManReservation::with(['userServices'])->whereHas('userServices')->where('period_id', 2)->pluck('number_of_man_services')->toArray();
+            $getNumberOfPersonsReservationMorning = array_sum($getNumberOfPersonsReservation);
+            // Second Number of Design Plan 
+            $getNumberOfPersonsDesignMorning = UserDetail::where('period', 'صباحي')->pluck('service_count')->toArray();
+            $getNumberOfPersonsDesignMorning = array_sum($getNumberOfPersonsDesignMorning);
+            $getNumberOfPersonsMorningAvailable = $getNumberOfPersons->persons_number_morning;
+            $ValueCheckAvailability = $getNumberOfPersonsMorningAvailable  -  ($getNumberOfPersonsReservationMorning + $getNumberOfPersonsDesignMorning);
+            if ($ValueCheckAvailability < 0) {
+                return back()->with('error', 'عدد العمال غير متاح لتفعيل الحجز');
+            } else {
+                $userId = Auth::user()->id;
+                $userService = UserService::where('reservation_id', $reservation->id)->where('user_id', $userId)->get()->last();
+                // Make update on record active on user Service 
+                $userService->update(
+                    [
+                        'active' => !$userService->active
+                    ]
+                );
+                $reservation->save();
+                return back()->with('success',  'تم تفغيل الحجز');
+            }
+        } elseif (($reservation->period->period == 'مسائي')) {
+            // First Number of Reservation
+            $getNumberOfPersonsReservation = ServiceManReservation::with(['userServices'])->whereHas('userServices')->where('period_id', 1)->pluck('number_of_man_services')->toArray();
+            $getNumberOfPersonsReservationEvening = array_sum($getNumberOfPersonsReservation);
+            // dd($getNumberOfPersonsReservation);
+            // Second Number of Design Plan 
+            $getNumberOfPersonsDesignEvening = UserDetail::where('period', 'مسائي')->pluck('service_count')->toArray();
+            $getNumberOfPersonsDesignEvening = array_sum($getNumberOfPersonsDesignEvening);
+            $getNumberOfPersonsEveningAvailable = $getNumberOfPersons->persons_number_evening;
+            $ValueCheckAvailability = $getNumberOfPersonsEveningAvailable  -  ($getNumberOfPersonsReservationEvening + $getNumberOfPersonsDesignEvening);
+            // dd($ValueCheckAvailability,$getNumberOfPersonsEveningAvailable,$getNumberOfPersonsReservationEvening,$getNumberOfPersonsDesignEvening);
+            if ($ValueCheckAvailability < 0) {
+                return back()->with('error', 'عدد العمال غير متاح لتفعيل الحجز');
+            } else {
+                $userId = Auth::user()->id;
 
-        return back()->with('success', 'Reservation status updated successfully!');
+                $userService = UserService::where('reservation_id', $reservation->id)->where('user_id', $userId)->get()->last();
+                // dd($userService);
+                $userService->active = !$userService->active; // Toggle the active state
+                $reservation->save();
+                return back()->with('success', 'تم تفغيل الحجز');
+            }
+        }
     }
 
     // toggleActiveDesign
     public function toggleActiveDesign(UserDetail $reservation)
     {
-        $reservation->active = !$reservation->active; // Toggle the active state
-        $reservation->save();
-        return back()->with('success', 'Reservation status updated successfully!');
+        // dd($reservation->period);
+        $getNumberOfPersons = worker::find(1);
+        if ($reservation->period == 'صباحي') {
+            // First Number of Reservation
+            $getNumberOfPersonsReservation = ServiceManReservation::with(['userServices'])->whereHas('userServices')->where('period_id', 2)->pluck('number_of_man_services')->toArray();
+            $getNumberOfPersonsReservationMorning = array_sum($getNumberOfPersonsReservation);
+            // Second Number of Design Plan 
+            $getNumberOfPersonsDesignMorning = UserDetail::where('period', 'صباحي')->pluck('service_count')->toArray();
+            $getNumberOfPersonsDesignMorning = array_sum($getNumberOfPersonsDesignMorning);
+            $getNumberOfPersonsMorningAvailable = $getNumberOfPersons->persons_number_morning;
+            $ValueCheckAvailability = $getNumberOfPersonsMorningAvailable  -  ($getNumberOfPersonsReservationMorning + $getNumberOfPersonsDesignMorning);
+            // dd($ValueCheckAvailability);
+            if ($ValueCheckAvailability < 0) {
+                return back()->with('error', 'عدد العمال غير متاح لتفعيل الحجز');
+            } else {
+                $reservation->active = !$reservation->active; // Toggle the active state
+                $reservation->save();
+                return back()->with('success',  'تم تفغيل الحجز');
+            }
+        } elseif (($reservation->period == 'مسائي')) {
+            // First Number of Reservation
+            $getNumberOfPersonsReservation = ServiceManReservation::with(['userServices'])->whereHas('userServices')->where('period_id', 1)->pluck('number_of_man_services')->toArray();
+            $getNumberOfPersonsReservationEvening = array_sum($getNumberOfPersonsReservation);
+            // Second Number of Design Plan 
+            $getNumberOfPersonsDesignEvening = UserDetail::where('period', 'مسائي')->pluck('service_count')->toArray();
+            $getNumberOfPersonsDesignEvening = array_sum($getNumberOfPersonsDesignEvening);
+            $getNumberOfPersonsEveningAvailable = $getNumberOfPersons->persons_number_Evening;
+            $ValueCheckAvailability = $getNumberOfPersonsEveningAvailable  -  ($getNumberOfPersonsReservationEvening + $getNumberOfPersonsDesignEvening);
+            // dd($ValueCheckAvailability);
+            if ($ValueCheckAvailability < 0) {
+                return back()->with('error', 'عدد العمال غير متاح لتفعيل الحجز');
+            } else {
+                $reservation->active = !$reservation->active; // Toggle the active state
+                $reservation->save();
+                return back()->with('success', 'تم تفغيل الحجز');
+            }
+        }
+        // $reservation->active = !$reservation->active; // Toggle the active state
+        // $reservation->save();
+        // return back()->with('success', 'Reservation status updated successfully!');
     }
 }

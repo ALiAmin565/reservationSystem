@@ -1,4 +1,7 @@
 <x-layout.master>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Modal -->
     <div class="modal fade" id="social" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -144,33 +147,70 @@
                                                                     التعاقدات
                                                                     السابقة</span>
                                                             </p> --}}
-                                                            <table class="table" style="margin:-1rem;
-">
+                                                            <table class="table" style="margin:-1rem;">
                                                                 <thead>
                                                                     <tr>
-
-                                                                        <th scope="col">منتهية
-                                                                        </th>
-                                                                        <th scope="col">منتظرة
-                                                                        </th>
-
-                                                                        <th scope="col">
-                                                                            اجمالي الطلبات
-                                                                        </th>
-
+                                                                        <th scope="col">اسم الطلب</th>
+                                                                        <th scope="col">الحالة</th>
+                                                                        <th scope="col">طباعة الطلب</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
+                                                                    @foreach ($activeReservations as $valueOne)
+                                                                        {{-- @dd(); --}}
+                                                                        <tr>
+                                                                            <td>{{ $valueOne->service_name }}</td>
+                                                                    <td>{{ $valueOne->active === 0 ? 'غير مفعل' : 'مفعل' }}</td>
 
-                                                                        <td>{{ $activeReservations }}</td>
-                                                                        <td>{{ $inactiveReservations }}</td>
-                                                                        <td>{{ $activeReservations + $inactiveReservations }}
-                                                                        </td>
-                                                                    </tr>
+                                                                            <td>
+                                                                                <button class="btn btn-primary"
+                                                                                    onclick="showDetails('active', {{ json_encode($valueOne) }} , {{ json_encode($valueOne->nationalityData) }} , {{ json_encode($valueOne->period) }})">طباعة</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
 
+                                                                    @foreach ($inactiveReservations as $valueTwo)
+                                                                        <tr>
+                                                                            <td>طلب مخصص</td>
+                                                                            <td>{{ $valueTwo->active }}</td>
+                                                                            <td>
+                                                                                <button class="btn btn-primary"
+                                                                                    onclick="showDetails('inactive', {{ json_encode($valueTwo) }})">طباعة</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
                                                                 </tbody>
                                                             </table>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="detailsModal" tabindex="-1"
+                                                                aria-labelledby="detailsModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="detailsModalLabel">تفاصيل الطلب
+                                                                            </h5>
+                                                                            {{-- <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button> --}}
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div id="detailsContent"></div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            {{-- <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                id="modalActionButtonPrint">إغلاق</button> --}}
+                                                                            <button type="button"
+                                                                                class="btn btn-primary"
+                                                                                onclick="window.print()">طباعة</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -196,20 +236,63 @@
         .navbar-light .navbar-toggler-icon {
             background-image: black !important;
         }
-        .navbar{
-                box-shadow: none !important;
+
+        .navbar {
+            box-shadow: none !important;
 
         }
     </style>
-    //
-    <Script>
-        //     document.addEventListener("DOMContentLoaded", function() {
-        //     var navbarTogglerIcon = document.querySelector('.navbar-light .navbar-toggler-icon');
-        //     if (navbarTogglerIcon) {
-        //         navbarTogglerIcon.style.backgroundImage = 'url("https://cdn.iconscout.com/icon/premium/png-256-thumb/menu-3194221-2668357.png")';  
-        //     }
-        // });
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showDetails(type, data, nationality = null, period = null) {
+            let content = '';
+            if (type === 'active') {
+                content += `
+                    <p>اسم الخدمة: ${data.service_name}</p>
+                   
+                    <p>عدد الزيارات: ${data.number_of_visits}</p>
+                    <p>عدد العمال: ${data.number_of_man_services}</p>
+                    <p>الفترة : ${period.period}</p>
+                    <p>الحالة: ${data.active === 1 ? 'مفعل' : 'غير مفعل'}</p>
+                  
+                    <p>الجنسية: ${nationality.name}</p>
+                    <p>اجمالي سعر الخدمة شامل الضريبة : ${ (data.price - data.price * data.discount /100 ) * ( 1 + data.service_charge /100)  }</p>
+                `;
+            } else {
+                content += `
+                    <p>معرف المستخدم: ${data.user_id}</p>
+                    <p>المدينة: ${data.city}</p>
+                    <p>اسم الشارع: ${data.street_name}</p>
+                    <p>رقم المبنى: ${data.building_number}</p>
+                    <p>رقم الطابق: ${data.floor_number}</p>
+                    <p>رقم المنزل: ${data.house_number}</p>
+                    <p>العنوان الكامل: ${data.full_address}</p>
+                    <p>رقم الهاتف: ${data.phone_number}</p>
+                    <p>عدد الخدمات: ${data.service_count}</p>
+                    <p>الزيارات الأسبوعية: ${data.weekly_visits}</p>
+                    <p>مدة العقد: ${data.contract_duration}</p>
+                    <p>أول زيارة: ${data.first_visit}</p>
+                    <p>عدد الساعات: ${data.hours_count}</p>
+                    <p>طريقة الدفع: ${data.payment_method}</p>
+                    <p>الحالة: ${data.active === 1 ? 'مفعل' : 'غير مفعل'}</p>
+                    <p>معرف المعاملة: ${data.transaction_id}</p>
+                    <p>الفترة: ${data.period}</p>
+                    <p>السعر الإجمالي: ${data.total_price}</p>
+                    <p>الجنسية: ${data.nationality}</p>
+                `;
+            }
 
-        // 
-    </Script>
+            document.getElementById('detailsContent').innerHTML = content;
+            var detailsModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+            detailsModal.show();
+        }
+
+        document.getElementById('modalActionButtonPrint').addEventListener('click', function() {
+            // Perform the desired action here
+            var detailsModals = new bootstrap.Modal(document.getElementById('detailsModal'));
+            // var detailsModalPrint = document.getElementById('detailsModal');
+            detailsModals.hide();
+        });
+    </script>
 </x-layout.master>

@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" style="display:none">
     <nav class="nav justify-content-center">
         <a id="facebook" class="nav-link d-none d-sm-flex" href="#" target="_blank">
             <i class="fab fa-facebook-f"></i>

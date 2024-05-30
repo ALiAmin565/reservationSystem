@@ -40,4 +40,9 @@ class ServiceManReservation extends Model
     {
         return $this->belongsTo(Nationality::class, 'nationality');
     }
+
+    public function userServices()
+    {
+        return $this->hasMany(UserService::class, 'reservation_id');
+    }
 }

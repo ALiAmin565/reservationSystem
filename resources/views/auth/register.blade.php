@@ -137,7 +137,7 @@
                             </div>
                             <div class="mt-4">
                                 <div class="col-sm-9 offset-sm-3">
-                                    <a href="{{ route('login') }}">لديك حساب بالفعل ؟</a>
+                                    <a href="{{ route('login') }}"  style="color:#218838">لديك حساب بالفعل ؟</a>
                                 </div>
                             </div>
                         </form>

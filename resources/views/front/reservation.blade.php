@@ -41,10 +41,12 @@
 
     <div class="inner-header-banner">
         <span class="inner-header-banner-title">زيارة</span>
-        <span class="inner-header-banner-after"><img src="Content/img/page-header-shape.svg" class="w-100"></span>
-        <img src="https://shining.ajeerco.com/wp-content/uploads/2023/10/hd.jpg" class="img-fluid w-100">
+        <span class="inner-header-banner-after">
+            <!--<img src="Content/img/page-header-shape.svg" class="w-100">-->
+            </span>
+        <img src="https://www12.0zz0.com/2024/05/08/21/524904204.png" class="img-fluid w-100">
     </div>
-    <div class="container">
+    <div class="container" style="    margin-top: 4rem;">
         <div class="big-title-with-line"><span>زيــــــارة</span></div>
         <div class="align-items-center row">
             <div class="col-md-9">

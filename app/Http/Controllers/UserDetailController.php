@@ -97,4 +97,14 @@ class UserDetailController extends Controller
         $userDetail->delete();
         return redirect()->route('user_details.index');
     }
+
+    public function softDelete($id)
+    {
+        $userService = UserDetail::find($id);
+        if ($userService) {
+            $userService->delete(); // Assuming you have soft deletes enabled on UserService model
+        }
+
+        return redirect()->back()->with('success', 'User service deleted successfully');
+    }
 }
